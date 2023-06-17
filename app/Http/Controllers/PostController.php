@@ -7,21 +7,24 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 
 use Spatie\RouteAttributes\Attributes\Resource;
+use Illuminate\View\View;
+use Spatie\RouteAttributes\Attributes\Middleware;
 
+#[Middleware("auth")]
 #[Resource(
     resource: 'posts', 
-    apiResource: true,
     shallow: true, 
-    names: 'Post',
+    names: 'post',
 )]
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        //$post = Post::create(['title' => 'test', 'userid' => 1, 'note' => 'test' ]);
+        return view('post.index', [ 'posts' => Post::all() ]);
     }
 
     /**
