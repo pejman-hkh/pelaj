@@ -24,15 +24,15 @@ class PostController extends Controller
     public function index(): View
     {
         //$post = Post::create(['title' => 'test', 'userid' => 1, 'note' => 'test' ]);
-        return view('post.index', [ 'posts' => Post::paginate(1) ]);
+        return view('post.index', [ 'posts' => Post::paginate(5) ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('post.create');
     }
 
     /**
