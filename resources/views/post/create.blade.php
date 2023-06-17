@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Post ') }} {{ $post?__('Edit'):__('New')}}
+            {{ __('Post ') }} {{ @$post?__('Edit ').$post->title:__('New')}}
         </h2>
     </x-slot>
 
@@ -29,7 +29,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-3">
-                    {{ $post?__('Edit'):__('Send') }}
+                    {{ @$post?__('Edit'):__('Send') }}
                 </x-primary-button>
             </div>
         </form>                

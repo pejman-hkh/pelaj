@@ -9,7 +9,8 @@ use App\Models\Post;
 use Spatie\RouteAttributes\Attributes\Resource;
 use Illuminate\View\View;
 use Spatie\RouteAttributes\Attributes\Middleware;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 #[Middleware("auth")]
 #[Resource(
     resource: 'posts', 
@@ -38,9 +39,16 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(StorePostRequest $request): RedirectResponse
     {
-        //
+
+        $post = Post::create([
+            'title' => $request->title,
+            'note' => $request->note,
+            'user_id' => (int)$request->user()->id,
+        ]);
+
+        return Redirect::route('post.edit', $post->id)->with('status', 'profile-updated');
     }
 
     /**
