@@ -24,7 +24,7 @@ class PostController extends Controller
     public function index(): View
     {
         //$post = Post::create(['title' => 'test', 'userid' => 1, 'note' => 'test' ]);
-        return view('post.index', [ 'posts' => Post::all() ]);
+        return view('post.index', [ 'posts' => Post::paginate(1) ]);
     }
 
     /**

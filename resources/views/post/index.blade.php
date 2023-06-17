@@ -33,6 +33,7 @@
                    @endforeach
                     </x-tbody>
                     </x-table>
+                    {{ $posts->onEachSide(5)->links() }}
                 </div>
             </div>
         </div>
