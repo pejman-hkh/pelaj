@@ -12,11 +12,17 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Middleware("guest")]
 class NewPasswordController extends Controller
 {
     /**
      * Display the password reset view.
      */
+    #[Get('reset-password/{token}', name : 'password.reset')]
     public function create(Request $request): View
     {
         return view('auth.reset-password', ['request' => $request]);
@@ -27,6 +33,7 @@ class NewPasswordController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    #[Post('reset-password', name : 'password.store')]
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

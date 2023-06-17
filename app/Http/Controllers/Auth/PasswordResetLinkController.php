@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Middleware("guest")]
 class PasswordResetLinkController extends Controller
 {
     /**
      * Display the password reset link request view.
      */
+    #[Get("forgot-password", name : 'password.request')]
     public function create(): View
     {
         return view('auth.forgot-password');
@@ -23,6 +29,7 @@ class PasswordResetLinkController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    #[Post("forgot-password", name : 'password.email')]
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

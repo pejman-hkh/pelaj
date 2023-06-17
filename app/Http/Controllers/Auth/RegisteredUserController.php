@@ -13,11 +13,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Middleware("guest")]
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
+    #[Get('register', name: "register")]
     public function create(): View
     {
         return view('auth.register');
@@ -28,6 +34,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    #[Post('register')]
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

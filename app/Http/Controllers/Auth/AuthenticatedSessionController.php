@@ -10,11 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Middleware("guest")]
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
+    #[Get('login', name: "login")]
     public function create(): View
     {
         return view('auth.login');
@@ -23,6 +29,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+    #[Post('login')]
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
@@ -35,6 +42,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
+    #[Get('logout', name: "logout")]
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
