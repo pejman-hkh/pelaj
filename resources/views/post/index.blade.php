@@ -27,7 +27,10 @@
                     {{ $post->created_at }} <br />
                     {{ $post->updated_at }}
                 </x-td>
-                <x-td></x-td>
+                <x-td>
+                    <a href="{{ route('post.edit', $post ) }}"> {{ __('Edit') }}</a> / 
+                    <a href="{{ route('post.edit', $post ) }}"> {{ __('Delete') }}</a>
+                </x-td>
             </tr>
            @endforeach
             </x-tbody>
