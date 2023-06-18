@@ -10,7 +10,12 @@ class TestController extends Controller
     //
     function index( Request $request ) {
         $path = substr( $request->getPathInfo(), 1 );
-        $post = Post::where('url', $path)->first();
+
+        if( substr( $path, 0, 4 ) == 'post' )
+            $post = Post::where('id', (int)substr( $path, 5 ) )->first();
+        else
+            $post = Post::where('url', $path)->first();
+        
         if( @$post->id ) {
             return view('post', ['post' => $post ]);
         }
