@@ -23,7 +23,7 @@
 
             <div>
                 <x-input-label for="url" :value="__('Url')" />
-                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" value="{{ @$post->url }}" required autofocus autocomplete="" />
+                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" value="{{ @$post->url }}" autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
 

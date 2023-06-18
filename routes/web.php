@@ -31,4 +31,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-#Route::get('/{any}', [TestController::class, 'index'])->where('any', '.*');
+Route::get('/{any}', [TestController::class, 'index'])->where('any', '.*');

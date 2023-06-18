@@ -14,7 +14,6 @@ class Post extends Model
     protected $fillable = [
         'title',
         'user_id',
-        'url',
         'note',
     ];
 
@@ -22,4 +21,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    function getDateAttribute() {
+        return new \Carbon\Carbon( $this->created_at );
+    }
+
+    function getLinkAttribute() {
+        return $this->url?url('/').'/'.$this->url:url('/').'/post/'.$this->id;
+    }
 }
