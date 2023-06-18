@@ -30,11 +30,11 @@
             <div class="container mx-auto flex flex-wrap py-6">
                 
                 <!-- Page Content -->
-                <main class="md:w-5/6 flex flex-col px-3">
+                <main class="w-full md:w-5/6 px-3">
                     {{ $slot }}
                 </main>
 
-                <aside class="md:w-1/6 flex flex-col items-center px-3">
+                <aside class="w-full md:w-1/6 items-center px-3">
                    <x-card>
                     <ul>
                         <li><a href="{{ route('post.index') }}">Posts</a></li>

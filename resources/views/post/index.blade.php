@@ -11,6 +11,7 @@
             <x-table>
                 <x-thead>
                     <x-th>{{ __('Title') }}</x-th>
+                    <x-th>{{ __('Url') }}</x-th>
                     <x-th>{{ __('Text') }}</x-th>
                     <x-th>{{ __('User') }}</x-th>
                     <x-th>{{ __('Date') }}</x-th>
@@ -21,6 +22,7 @@
            @foreach ( $posts as $post )
             <tr>
                 <x-td> {{ $post->title }}</x-td>
+                <x-td> {{ $post->url }}</x-td>
                 <x-td> {{ $post->note }}</x-td>
                 <x-td> {{ $post->user->name }}</x-td>
                 <x-td> 
