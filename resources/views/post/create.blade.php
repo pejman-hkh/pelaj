@@ -10,16 +10,23 @@
         
         <x-primary-button class="my-4"><a href="{{ route('post.index') }}"> Post list </a></x-primary-button>
 
-        <form method="POST" action="{{ route('post.store') }}">
+        <form method="POST" action="{{ @$post?route('post.update', $post->id ):route('post.store') }}">
             @csrf
- 
+            @if( @$post )
+             @method('PUT')
+            @endif
             <div>
                 <x-input-label for="title" :value="__('Title')" />
                 <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" value="{{ @$post->title }}" required autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
             </div>
 
-      
+            <div>
+                <x-input-label for="url" :value="__('Url')" />
+                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" value="{{ @$post->url }}" required autofocus autocomplete="" />
+                <x-input-error :messages="$errors->get('url')" class="mt-2" />
+            </div>
+
     
             <div class="mt-4">
                 <x-input-label for="note" :value="__('Text')" />

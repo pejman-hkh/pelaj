@@ -42,13 +42,15 @@ class PostController extends Controller
     public function store(StorePostRequest $request): RedirectResponse
     {
 
-        $post = Post::create([
-            'title' => $request->title,
-            'note' => $request->note,
-            'user_id' => (int)$request->user()->id,
-        ]);
+        $post = new Post();
+        $post->title = $request->title;
+        $post->note = $request->note;
+        $post->url = $request->url;
+        $post->user_id = (int)$request->user()->id;
 
-        return Redirect::route('post.edit', $post->id)->with('status', 'profile-updated');
+        $post->save();
+
+        return Redirect::route('post.edit', $post->id)->with('status', 'post-updated');
     }
 
     /**
@@ -72,7 +74,13 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->title = $request->title;
+        $post->note = $request->note;
+        $post->url = $request->url;
+
+        $post->save();
+
+        return Redirect::route('post.edit', $post->id)->with('status', 'post-updated');
     }
 
     /**
@@ -80,6 +88,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return Redirect::route('post.index')->with('status', 'post-deleted');
     }
 }

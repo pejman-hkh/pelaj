@@ -29,7 +29,10 @@
                 </x-td>
                 <x-td>
                     <a href="{{ route('post.edit', $post ) }}"> {{ __('Edit') }}</a> / 
-                    <a href="{{ route('post.edit', $post ) }}"> {{ __('Delete') }}</a>
+                    <form method="POST" action="{{ route('post.destroy', $post ) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">{{ __('Delete') }}</button></form>
                 </x-td>
             </tr>
            @endforeach
