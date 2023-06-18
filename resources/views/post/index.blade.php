@@ -21,8 +21,8 @@
             <x-tbody>
            @foreach ( $posts as $post )
             <tr>
-                <x-td> {{ $post->title }}</x-td>
-                <x-td> {{ $post->url }}</x-td>
+                <x-td> <a href="{{ route('post.edit', $post ) }}">{{ $post->title }}</a></x-td>
+                <x-td> <a href="{{ $post->link }}" target="_blank">{{ $post->url?:$post->id }}</a></x-td>
                 <x-td> {{ $post->note }}</x-td>
                 <x-td> {{ $post->user->name }}</x-td>
                 <x-td> 
