@@ -24,7 +24,7 @@ class ShareViewSite
     public function handle(Request $request, Closure $next): Response
     {
 
-        View::addNamespace('Site', config('view.paths')[0].'/theme/default/' );
+        View::addNamespace('Site', config('view.paths')[0].'/theme/'.config('view.site') );
 
         $menus = \App\Models\Menu::all();
         $menuPosition = [];

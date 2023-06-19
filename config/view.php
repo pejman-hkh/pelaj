@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'site' => 'default',
     'paths' => [
         app_path('views'),
     ],
