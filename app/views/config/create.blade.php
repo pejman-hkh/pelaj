@@ -23,7 +23,7 @@
 
             <div class="mt-4">
                 <x-input-label for="val" :value="__('Value')" />
-                <x-text-input id="val" class="block mt-1 w-full" type="text" name="val" value="{{ @$config->val }}" autofocus autocomplete="" />
+                <x-textarea id="val" class="block mt-1 w-full" type="text" name="val" value="{{ @$config->val }}" autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('val')" class="mt-2" />
             </div>
 
