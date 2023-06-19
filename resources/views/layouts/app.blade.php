@@ -38,6 +38,7 @@
                    <x-card>
                     <ul>
                         <li><a href="{{ route('post.index') }}">Posts</a></li>
+                        <li class="mt-4"><a href="{{ route('menu.index') }}">Menus</a></li>
                     </ul>
                    </x-card>             
                 </aside>

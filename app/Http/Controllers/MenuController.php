@@ -5,7 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Menu;
+use Spatie\RouteAttributes\Attributes\Resource;
+use Illuminate\View\View;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
+#[Middleware("auth")]
+#[Resource(
+    resource: 'menus', 
+    shallow: true, 
+    names: 'menu',
+)]
 class MenuController extends Controller
 {
     /**
@@ -13,7 +24,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        return view('menu.index', [ 'menus' => Menu::paginate(5) ]);
     }
 
     /**
@@ -21,7 +32,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('menu.create');
     }
 
     /**
@@ -29,7 +40,14 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        //
+        $menu = new Menu();
+        $menu->title = $request->title;
+        $menu->url = $request->url;
+        $menu->user_id = (int)$request->user()->id;
+
+        $menu->save();
+
+        return Redirect::route('menu.edit', $menu->id)->with('status', 'menu-updated');
     }
 
     /**
@@ -45,7 +63,7 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return view('menu.create', ['menu' => $menu ]);
     }
 
     /**
@@ -53,7 +71,13 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-        //
+        $menu->title = $request->title;
+        $menu->url = $request->url;
+        $menu->position = $request->position;
+
+        $menu->save();
+
+        return Redirect::route('menu.edit', $menu->id)->with('status', 'menu-updated');
     }
 
     /**
@@ -61,6 +85,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $menu->delete();
+        return Redirect::route('menu.index')->with('status', 'menu-deleted');
     }
 }
