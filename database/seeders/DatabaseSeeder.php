@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         //\App\Models\User::factory(10)->create();
 
         $this->call(\Database\Seeders\UserSeeder::class);
+        $this->call(\Database\Seeders\ConfigSeeder::class);
         $this->call(\Database\Seeders\MenuSeeder::class);
         $this->call(\Database\Seeders\PostSeeder::class);
  

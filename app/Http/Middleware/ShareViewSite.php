@@ -29,13 +29,11 @@ class ShareViewSite
             $menuPosition[ $menu->position ][] = $menu;
         }
 
-        $this->view->share(
-            'menus', $menuPosition,
-        );        
+        $this->view->share( [
+            'menus' => $menuPosition,
+            'configs' => \App\Models\Config::keyPair()
+        ]);        
 
-        $this->view->share(
-            'config', ['config']
-        );
         return $next($request);
     }
 }
