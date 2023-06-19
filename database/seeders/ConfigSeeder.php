@@ -15,11 +15,13 @@ class ConfigSeeder extends Seeder
         \App\Models\Config::create([
             'key' => 'mainTitle',
             'val' => 'Tiny Blog in Laravel',
+            'user_id' => 1
         ]);        
 
         \App\Models\Config::create([
             'key' => 'about',
             'val' => 'Tiny Blog in Laravel',
+            'user_id' => 1
         ]);
     }
 }

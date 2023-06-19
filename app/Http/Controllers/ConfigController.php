@@ -5,7 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreConfigRequest;
 use App\Http\Requests\UpdateConfigRequest;
 use App\Models\Config;
+use Spatie\RouteAttributes\Attributes\Resource;
+use Illuminate\View\View;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
+#[Middleware("auth")]
+#[Resource(
+    resource: 'configs', 
+    shallow: true, 
+    names: 'config',
+)]
 class ConfigController extends Controller
 {
     /**
@@ -13,7 +24,7 @@ class ConfigController extends Controller
      */
     public function index()
     {
-        //
+        return view('config.index', [ 'configs' => Config::paginate(5) ]);
     }
 
     /**
@@ -21,7 +32,7 @@ class ConfigController extends Controller
      */
     public function create()
     {
-        //
+        return view('config.create', ['config' => new Config ]);
     }
 
     /**
@@ -29,7 +40,14 @@ class ConfigController extends Controller
      */
     public function store(StoreConfigRequest $request)
     {
-        //
+        $config = new Config();
+        $config->key = $request->key;
+        $config->val = $request->val;
+        $config->user_id = (int)$request->user()->id;
+
+        $config->save();
+
+        return Redirect::route('config.edit', $config->id)->with('status', 'config-updated');
     }
 
     /**
@@ -45,7 +63,7 @@ class ConfigController extends Controller
      */
     public function edit(Config $config)
     {
-        //
+        return view('config.create', ['config' => $config ]);
     }
 
     /**
@@ -53,7 +71,14 @@ class ConfigController extends Controller
      */
     public function update(UpdateConfigRequest $request, Config $config)
     {
-        //
+  
+        $config->key = $request->key;
+        $config->val = $request->val;
+        $config->user_id = (int)$request->user()->id;
+        
+        $config->save();
+
+        return Redirect::route('config.edit', $config->id)->with('status', 'config-updated');
     }
 
     /**
@@ -61,6 +86,7 @@ class ConfigController extends Controller
      */
     public function destroy(Config $config)
     {
-        //
+        $config->delete();
+        return Redirect::route('config.index')->with('status', 'config-deleted');
     }
 }
