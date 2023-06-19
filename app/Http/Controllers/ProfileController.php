@@ -9,11 +9,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Patch;
+use Spatie\RouteAttributes\Attributes\Delete;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Middleware("auth")]
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
+
+    #[Get('/profile', name : 'profile.edit')]
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -24,6 +32,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
+    #[Patch('/profile', name : 'profile.update')]
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
@@ -40,6 +49,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      */
+    #[Delete('/profile', name : 'profile.destroy')]
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

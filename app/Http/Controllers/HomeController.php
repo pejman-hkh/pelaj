@@ -11,7 +11,7 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 #[Middleware([ \App\Http\Middleware\ShareViewSite::class ])]
 class HomeController extends Controller
 {
-    #[Get('/')]
+    #[Get('/', name : 'home')]
     public function index( Request $request ): View
     {
         return view('welcome', [ 'posts' => Post::paginate(5) ]);
