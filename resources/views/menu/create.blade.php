@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Menu ') }} {{ @$menu?__('Edit ').$menu->title:__('New')}}
+            {{ __('Menu ') }} {{ @$menu->id?__('Edit ').$menu->title:__('New')}}
         </h2>
     </x-slot>
 
@@ -10,9 +10,9 @@
         
         <x-primary-button class="my-4"><a href="{{ route('menu.index') }}"> Menu list </a></x-primary-button>
 
-        <form method="POST" action="{{ @$menu?route('menu.update', $menu->id ):route('menu.store') }}">
+        <form method="POST" action="{{ @$menu->id?route('menu.update', $menu->id ):route('menu.store') }}">
             @csrf
-            @if( @$menu )
+            @if( @$menu->id )
              @method('PUT')
             @endif
             <div>
@@ -27,10 +27,22 @@
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
 
+            <div class="mt-4">
+                <x-input-label for="position" :value="__('Url')" />
+                <x-select id="position" class="block mt-1 w-full" type="text" name="position" value="{{ @$menu->position }}">
+                    <option value="">Select</option>
+                    @foreach( $menu->positions as $pos )
+                    <option value="{{ $pos->val }}">{{ $pos->val }} - {{ $pos->title }}</option>
+                    @endforeach
+                </x-select>
+
+                <x-input-error :messages="$errors->get('position')" class="mt-2" />
+            </div>
+
  
             <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-3">
-                    {{ @$menu?__('Edit'):__('Send') }}
+                    {{ @$menu->id?__('Edit'):__('Send') }}
                 </x-primary-button>
             </div>
         </form>                

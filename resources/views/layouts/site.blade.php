@@ -22,8 +22,10 @@
 
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">Shop</a></li>
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="#">About</a></li>
+                    @foreach ( (array)@$menus[1] as $menu )
+                    <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ $menu->link }}">{{ $menu->title }}</a></li>
+                    @endforeach
+
                 </ul>
             </nav>
 
@@ -70,12 +72,9 @@
         </div>
         <div :class="open ? 'block': 'hidden'" class="w-full flex-grow sm:flex sm:items-center sm:w-auto">
             <div class="w-full container mx-auto flex flex-col sm:flex-row items-center justify-center text-sm font-bold uppercase mt-0 px-6 py-2">
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Technology</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Automotive</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Finance</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Politics</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Culture</a>
-                <a href="#" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">Sports</a>
+                @foreach ( (array)@$menus[2] as $menu )
+                <a href="{{$menu->link}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{$menu->title}}</a>
+                @endforeach
             </div>
         </div>
     </nav>
@@ -142,10 +141,10 @@
         </div>
         <div class="w-full container mx-auto flex flex-col items-center">
             <div class="flex flex-col md:flex-row text-center md:text-left md:justify-between py-6">
-                <a href="#" class="uppercase px-3">About Us</a>
-                <a href="#" class="uppercase px-3">Privacy Policy</a>
-                <a href="#" class="uppercase px-3">Terms & Conditions</a>
-                <a href="#" class="uppercase px-3">Contact Us</a>
+                @foreach ( (array)@$menus[6] as $menu )
+                <a href="{{ $menu->link }}" class="uppercase px-3">{{ $menu->title }}</a>
+                @endforeach
+     
             </div>
             <div class="uppercase pb-6">&copy; myblog.com</div>
         </div>

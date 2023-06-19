@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <x-card>
             <x-primary-button class="my-4"><a href="{{ route('menu.create') }}"> New Menu</a></x-primary-button>
             <x-table>

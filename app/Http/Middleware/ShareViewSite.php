@@ -22,8 +22,15 @@ class ShareViewSite
 
     public function handle(Request $request, Closure $next): Response
     {
+
+        $menus = \App\Models\Menu::all();
+        $menuPosition = [];
+        foreach( $menus as $menu ) {
+            $menuPosition[ $menu->position ][] = $menu;
+        }
+
         $this->view->share(
-            'menu', ['test']
+            'menus', $menuPosition,
         );        
 
         $this->view->share(

@@ -12,6 +12,7 @@ class Menu extends Model
 
     protected $fillable = [
         'title',
+        'position',
         'url',
     ];
 
@@ -21,6 +22,22 @@ class Menu extends Model
 
     function getDateAttribute() {
         return new \Carbon\Carbon( $this->created_at );
+    }
+
+    function getLinkAttribute() {
+        return url('/').'/'.$this->url;
+    }
+    
+    function getPositionsAttribute() {
+        $place = 1;
+        return [
+            (object)[ 'val' => $place++, 'title' => __('Top')],
+            (object)[ 'val' => $place++, 'title' => __('TopCenter')],
+            (object)[ 'val' => $place++, 'title' => __('Right')],
+            (object)[ 'val' => $place++, 'title' => __('Left')],
+            (object)[ 'val' => $place++, 'title' => __('Bottom')],
+            (object)[ 'val' => $place++, 'title' => __('Footer')],
+        ];
     }
 
 }
