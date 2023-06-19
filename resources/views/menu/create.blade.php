@@ -28,7 +28,7 @@
             </div>
 
             <div class="mt-4">
-                <x-input-label for="position" :value="__('Url')" />
+                <x-input-label for="position" :value="__('Position')" />
                 <x-select id="position" class="block mt-1 w-full" type="text" name="position" value="{{ @$menu->position }}">
                     <option value="">Select</option>
                     @foreach( $menu->positions as $pos )
