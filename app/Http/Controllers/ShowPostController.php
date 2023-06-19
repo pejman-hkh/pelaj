@@ -22,7 +22,7 @@ class ShowPostController extends Controller
             $post = Post::where('url', $path)->first();
         
         if( @$post->id ) {
-            return view('post', ['post' => $post ]);
+            return view('Site::post', ['post' => $post ]);
         }
         abort(404);
     }

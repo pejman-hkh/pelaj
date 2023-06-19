@@ -13,7 +13,7 @@ class ContactController extends Controller
     #[Get('contact')]
     public function index( Request $request ): View
     {
-        return view('contact', [
+        return view('Site::contact', [
             'user' => $request->user()
         ]);
     }

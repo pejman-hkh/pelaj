@@ -12,6 +12,6 @@ class SiteLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.site');
+        return view('Site::layouts.site');
     }
 }

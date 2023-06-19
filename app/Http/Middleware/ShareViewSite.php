@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\ViewErrorBag;
+use Illuminate\Support\Facades\View;
 
 class ShareViewSite
 {
@@ -22,6 +23,8 @@ class ShareViewSite
 
     public function handle(Request $request, Closure $next): Response
     {
+
+        View::addNamespace('Site', config('view.paths')[0].'/theme/default/' );
 
         $menus = \App\Models\Menu::all();
         $menuPosition = [];
