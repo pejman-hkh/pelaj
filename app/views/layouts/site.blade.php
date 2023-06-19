@@ -22,9 +22,17 @@
 
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
+
+                    @if ( \Illuminate\Support\Facades\Auth::check() )
+                       <li> <a class="px-4" href="{{ route('dashboard') }}"> {{ __('Dashboard') }}</a> </li>
+                    @else
+                        <li> <a class="px-4" href="{{ route('login') }}"> {{ __('Login') }}</a> </li>
+                        <li> <a class="px-4" href="{{ route('register') }}"> {{ __('Register') }}</a> </li>
+                    @endif
                     @foreach ( (array)@$menus[1] as $menu )
-                    <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ $menu->link }}">{{ $menu->title }}</a></li>
+                        <li><a class="hover:text-gray-200 hover:underline px-4" href="{{ $menu->link }}">{{ $menu->title }}</a></li>
                     @endforeach
+
 
                 </ul>
             </nav>
