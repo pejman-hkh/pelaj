@@ -26,6 +26,10 @@ class Menu extends Model
 
     function getLinkAttribute() {
         return url('/').'/'.$this->url;
+    }   
+
+    function getPositionTitleAttribute() {
+        return $this->positions[ $this->position ]?->title;
     }
     
     function getPositionsAttribute() {

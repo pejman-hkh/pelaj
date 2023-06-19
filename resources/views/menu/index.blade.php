@@ -10,6 +10,7 @@
             <x-table>
                 <x-thead>
                     <x-th>{{ __('Title') }}</x-th>
+                    <x-th>{{ __('Position') }}</x-th>
                     <x-th>{{ __('Url') }}</x-th>
                     <x-th>{{ __('User') }}</x-th>
                     <x-th>{{ __('Date') }}</x-th>
@@ -20,7 +21,8 @@
            @foreach ( $menus as $menu )
             <tr>
                 <x-td> <a href="{{ route('menu.edit', $menu ) }}">{{ $menu->title }}</a></x-td>
-                <x-td> <a href="{{ $menu->link }}" target="_blank">{{ $menu->url?:$menu->id }}</a></x-td>
+                <x-td> {{ $menu->positionTitle }}</x-td>
+                <x-td> <a href="{{ $menu->link }}" target="_blank">{{ $menu->url }}</a></x-td>
                 <x-td> {{ $menu->user->name }}</x-td>
                 <x-td> 
                     {{ $menu->created_at }} <br />
