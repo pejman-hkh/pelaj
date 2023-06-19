@@ -1,2 +1,2 @@
 # laravel
-Tiny cms for laravel with blade and breeze kit starter
+Pelaj Cms is a tiny cms for laravel with blade and breeze kit starter
