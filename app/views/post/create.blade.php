@@ -10,27 +10,27 @@
         
         <x-primary-button class="my-4"><a href="{{ route('post.index') }}"> Post list </a></x-primary-button>
 
-        <form method="POST" action="{{ @$post?route('post.update', $post->id ):route('post.store') }}">
+        <form method="POST" action="{{ @$post->id?route('post.update', $post->id ):route('post.store') }}">
             @csrf
-            @if( @$post )
+            @if( @$post->id )
              @method('PUT')
             @endif
             <div>
                 <x-input-label for="title" :value="__('Title')" />
-                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" value="{{ @$post->title }}" required autofocus autocomplete="" />
+                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" required autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="url" :value="__('Url')" />
-                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" value="{{ @$post->url }}" autofocus autocomplete="" />
+                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
 
     
             <div class="mt-4">
                 <x-input-label for="note" :value="__('Text')" />
-                <x-textarea id="note" class="block mt-1 w-full" name="note" value="{{ @$post->note }}" required autofocus />
+                <x-textarea id="note" class="quill block mt-1 w-full" name="note" />
                 <x-input-error :messages="$errors->get('note')" class="mt-2" />
             </div>
 
@@ -41,6 +41,10 @@
             </div>
         </form>                
     </x-card>
-
- 
 </x-app-layout>
+
+@if (@$post->id)
+<script>
+    let formJsonData = @json( $post );
+</script>
+@endif

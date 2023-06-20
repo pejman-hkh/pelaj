@@ -17,19 +17,19 @@
             @endif
             <div>
                 <x-input-label for="title" :value="__('Title')" />
-                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" value="{{ @$menu->title }}" required autofocus autocomplete="" />
+                <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" required autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="url" :value="__('Url')" />
-                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" value="{{ @$menu->url }}" autofocus autocomplete="" />
+                <x-text-input id="url" class="block mt-1 w-full" type="text" name="url" autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="position" :value="__('Position')" />
-                <x-select id="position" class="block mt-1 w-full" type="text" name="position" value="{{ @$menu->position }}">
+                <x-select id="position" class="block mt-1 w-full" type="text" name="position">
                     <option value="">Select</option>
                     @foreach( $menu->positions as $pos )
                     <option value="{{ $pos->val }}">{{ $pos->val }} - {{ $pos->title }}</option>
@@ -50,3 +50,9 @@
 
  
 </x-app-layout>
+
+@if (@$menu->id)
+<script>
+    let formJsonData = @json( $menu );
+</script>
+@endif

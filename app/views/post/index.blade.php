@@ -12,7 +12,7 @@
                 <x-thead>
                     <x-th>{{ __('Title') }}</x-th>
                     <x-th>{{ __('Url') }}</x-th>
-                    <x-th>{{ __('Text') }}</x-th>
+  
                     <x-th>{{ __('User') }}</x-th>
                     <x-th>{{ __('Date') }}</x-th>
                     <x-th>{{ __('Edit') }}</x-th>
@@ -23,7 +23,7 @@
             <tr>
                 <x-td> <a href="{{ route('post.edit', $post ) }}">{{ $post->title }}</a></x-td>
                 <x-td> <a href="{{ $post->link }}" target="_blank">{{ $post->url?:$post->id }}</a></x-td>
-                <x-td> {{ $post->note }}</x-td>
+
                 <x-td> {{ $post->user->name }}</x-td>
                 <x-td> 
                     {{ $post->created_at }} <br />

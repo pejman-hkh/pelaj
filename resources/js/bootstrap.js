@@ -6,6 +6,8 @@
 
 import axios from 'axios';
 window.axios = axios;
+import nodelist from './nodelist';
+window.$ = nodelist;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

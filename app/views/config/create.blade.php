@@ -17,13 +17,13 @@
             @endif
             <div>
                 <x-input-label for="key" :value="__('Key')" />
-                <x-text-input id="key" class="block mt-1 w-full" type="text" name="key" value="{{ @$config->key }}" required autofocus autocomplete="" />
+                <x-text-input id="key" class="block mt-1 w-full" type="text" name="key" required autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('key')" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-input-label for="val" :value="__('Value')" />
-                <x-textarea id="val" class="block mt-1 w-full" type="text" name="val" value="{{ @$config->val }}" autofocus autocomplete="" />
+                <x-textarea id="val" class="block mt-1 w-full" type="text" name="val" autofocus autocomplete="" />
                 <x-input-error :messages="$errors->get('val')" class="mt-2" />
             </div>
 
@@ -38,3 +38,9 @@
 
  
 </x-app-layout>
+
+@if (@$config->id)
+<script>
+    let formJsonData = @json( $config );
+</script>
+@endif
