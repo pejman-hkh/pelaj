@@ -5,7 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
+use Spatie\RouteAttributes\Attributes\Resource;
+use Illuminate\View\View;
+use Spatie\RouteAttributes\Attributes\Middleware;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
+#[Middleware("auth")]
+#[Resource(
+    resource: 'comments', 
+    shallow: true, 
+    names: 'comment',
+)]
 class CommentController extends Controller
 {
     /**
@@ -13,7 +24,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return view('comment.index', [ 'comments' => Comment::paginate(5) ]);
     }
 
     /**
@@ -21,7 +32,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('comment.create', ['comment' => new Comment ]);
     }
 
     /**
@@ -29,7 +40,15 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
-        //
+        $comment = new Comment();
+        $comment->title = $request->title;
+        $comment->url = $request->url;
+        $comment->position = $request->position;
+        $comment->user_id = (int)$request->user()->id;
+
+        $comment->save();
+
+        return Redirect::route('comment.edit', $comment->id)->with('status', 'comment-updated');
     }
 
     /**
@@ -45,7 +64,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('comment.create', ['comment' => $comment ]);
     }
 
     /**
@@ -53,7 +72,14 @@ class CommentController extends Controller
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        //
+  
+        $comment->title = $request->title;
+        $comment->url = $request->url;
+        $comment->position = $request->position;
+
+        $comment->save();
+
+        return Redirect::route('comment.edit', $comment->id)->with('status', 'comment-updated');
     }
 
     /**
@@ -61,6 +87,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+        return Redirect::route('comment.index')->with('status', 'comment-deleted');
     }
 }

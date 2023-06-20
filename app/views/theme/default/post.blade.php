@@ -17,6 +17,14 @@
     </article>
 
     <div class="w-full sm:max-w mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <h1 class="font-bold mb-4">Comments: </h1>
+        @foreach ( @$post->comments as $comment )
+            <div class="mb-4">
+                <h3 class="mb-4">{{ $comment->name }} / {{ $comment->email }}</h3>
+                <p>{{ $comment->note }}</p>
+                <hr class="my-4" />
+            </div>
+        @endforeach
     <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

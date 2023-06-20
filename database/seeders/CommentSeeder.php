@@ -12,6 +12,12 @@ class CommentSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Comment::create([
+            'name' => __('Test'),
+            'email' => 'test@test.test',
+            'note' => 'About text ...',
+            'user_id' => 1,
+            'post_id' => 1,
+        ]);
     }
 }

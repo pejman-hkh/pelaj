@@ -18,6 +18,10 @@ class Post extends Model
         'note',
     ];
 
+    function comments() {
+        return $this->hasMany(Comment::class, 'post_id','id');
+    }
+
     function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
