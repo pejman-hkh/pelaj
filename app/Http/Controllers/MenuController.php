@@ -40,13 +40,7 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        $menu = new Menu();
-        $menu->title = $request->title;
-        $menu->url = $request->url;
-        $menu->position = $request->position;
-        $menu->user_id = (int)$request->user()->id;
-
-        $menu->save();
+        $menu = $request->save();
 
         return Redirect::route('menu.edit', $menu->id)->with('status', 'menu-updated');
     }
@@ -72,13 +66,9 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
-  
-        $menu->title = $request->title;
-        $menu->url = $request->url;
-        $menu->position = $request->position;
 
-        $menu->save();
-
+        $request->save( $menu );
+        
         return Redirect::route('menu.edit', $menu->id)->with('status', 'menu-updated');
     }
 

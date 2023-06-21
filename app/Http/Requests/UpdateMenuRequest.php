@@ -25,4 +25,11 @@ class UpdateMenuRequest extends FormRequest
             //
         ];
     }
+
+    public function save( $menu ) {
+        $menu->title = $this->title;
+        $menu->url = $this->url;
+        $menu->position = $this->position;
+        $menu->save();
+    }
 }

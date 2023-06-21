@@ -33,6 +33,27 @@ class MenuSeeder extends Seeder
             'url' => 'contact',
             'position' => 1,
             'user_id' => 1
+        ]);        
+
+        \App\Models\Menu::create([
+            'title' => __('Home'),
+            'url' => '',
+            'position' => 6,
+            'user_id' => 1
+        ]);        
+
+        \App\Models\Menu::create([
+            'title' => __('About'),
+            'url' => 'about',
+            'position' => 6,
+            'user_id' => 1
+        ]);
+
+        \App\Models\Menu::create([
+            'title' => __('Contact'),
+            'url' => 'contact',
+            'position' => 6,
+            'user_id' => 1
         ]);
     }
 }

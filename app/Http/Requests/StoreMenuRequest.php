@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Menu;
 
 class StoreMenuRequest extends FormRequest
 {
@@ -24,5 +25,17 @@ class StoreMenuRequest extends FormRequest
         return [
             //
         ];
+    }
+
+    public function save() {
+        $menu = new Menu();
+        $menu->title = $this->title;
+        $menu->url = $this->url;
+        $menu->position = $this->position;
+        $menu->user_id = (int)$this->user()->id;
+
+        $menu->save();
+
+        return $menu;        
     }
 }
