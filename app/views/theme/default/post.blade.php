@@ -29,8 +29,9 @@
     <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="">
+        <form method="POST" action="{{url('/')}}/comment">
             @csrf
+            <input type="hidden" name="postid" value="{{$post->id}}">
             <!-- Name -->
             <div>
                 <x-input-label for="name" :value="__('Name')" />
