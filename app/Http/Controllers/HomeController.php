@@ -16,4 +16,10 @@ class HomeController extends Controller
     {
         return view('Site::welcome', [ 'posts' => Post::where('status', 1)->paginate(5) ]);
     }
+
+    #[Get('/cat/{id}')]
+    public function cat( Request $request, $catid ): View 
+    {
+        return view('Site::welcome', ['posts' => Post::where('status', 1)->where('cat_id', $catid )->paginate(5)  ]);
+    }
 }

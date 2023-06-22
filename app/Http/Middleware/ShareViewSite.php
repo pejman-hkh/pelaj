@@ -34,6 +34,7 @@ class ShareViewSite
 
         $this->view->share( [
             'menus' => $menuPosition,
+            'cats' => \App\Models\Cat::all(),
             'configs' => \App\Models\Config::keyPair()
         ]);        
 

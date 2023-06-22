@@ -83,6 +83,9 @@
                 @foreach ( (array)@$menus[2] as $menu )
                 <a href="{{$menu->link}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{$menu->title}}</a>
                 @endforeach
+                @foreach ( @$cats as $cat )
+                <a href="{{$cat->link}}" class="hover:bg-gray-400 rounded py-2 px-4 mx-2">{{$cat->title}}</a>
+                @endforeach
             </div>
         </div>
     </nav>
