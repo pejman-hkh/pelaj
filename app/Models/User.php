@@ -49,6 +49,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public static $formExceptColumns = [
+        'remember_token',
+    ];
+        
+
     public function getListTitleAttribute() {
         return $this->name;
     } 

@@ -1,4 +1,5 @@
 import './bootstrap';
+import '../css/quill.snow.css';
 
 import Alpine from 'alpinejs';
 import Quill from 'quill';
@@ -8,7 +9,7 @@ Alpine.start();
 
 $('.quill').each(function() {
 	let editor = document.createElement('div');
-	
+
 	this.parentElement.insertBefore(editor, this);
 
 	let quill = new Quill(editor, {

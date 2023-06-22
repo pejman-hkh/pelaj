@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('title');
+            $table->integer('cat_id');
+            $table->tinyInteger('status');
+            $table->tinyInteger('enableComments');
             $table->string('url');
+            $table->text('shortnote');
             $table->text('note');
             $table->timestamps();
         });

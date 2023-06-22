@@ -28,7 +28,7 @@ class Manager extends Model
     public static function getModelNames(): array
     {
         $path = app_path('Models') . '/*.php';
-        $ret = collect(glob($path))->map(fn ($file) => basename($file, '.php'))->toArray();
+        $ret = collect(glob($path))->map(function ($file) { $model = basename($file, '.php'); if( $model !== 'Manager' ) return $model; })->toArray();
 
         return $ret;
     }

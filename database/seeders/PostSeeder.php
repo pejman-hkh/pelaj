@@ -16,7 +16,8 @@ class PostSeeder extends Seeder
             'title' => __('About'),
             'url' => 'about',
             'note' => 'About text ...',
-            'user_id' => 1
+            'user_id' => 1,
+            'status' => 1,
         ]);
     }
 }

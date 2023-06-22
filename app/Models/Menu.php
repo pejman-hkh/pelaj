@@ -20,6 +20,16 @@ class Menu extends Model
         'user_id',
     ];
 
+    function getMenuidArrayAttribute() {
+        $menus = Menu::all();
+        $ret = [];
+        foreach( $menus as $menu ) {
+            $ret[ $menu->id ] = $menu->title.' ('.$menu->positionTitle.')';
+        }
+
+        return $ret;
+    }
+
     function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }

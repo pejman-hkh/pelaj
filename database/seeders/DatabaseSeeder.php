@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(\Database\Seeders\MenuSeeder::class);
         $this->call(\Database\Seeders\PostSeeder::class);
         $this->call(\Database\Seeders\CommentSeeder::class);
+        $this->call(\Database\Seeders\CatSeeder::class);
  
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

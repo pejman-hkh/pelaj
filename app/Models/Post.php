@@ -30,12 +30,48 @@ class Post extends Model
         return $this->title;
     }
 
+    function getEnableCommentsTitleAttribute() {
+        return $this->enableCommentsArray[ $this->enableComments ];
+    }
+
+    function getStatusTitleAttribute() {
+        return $this->statusArray[ $this->status ];
+    }
+
+    function getEnableCommentsArrayAttribute() {
+        return [
+            __('Active'),
+            __('Deactive'),
+        ];
+    }
+
+    function getStatusArrayAttribute() {
+        return [
+            __('Hidden'),
+            __('Published'),
+        ];
+    }
+
+    function getCatidArrayAttribute() {
+        $cats = Cat::all();
+        $ret = [];
+        foreach( $cats as $cat ) {
+            $ret[ $cat->id ] = $cat->title;
+        }
+
+        return $ret;
+    }
+
     function comments() {
         return $this->hasMany(Comment::class, 'post_id','id');
     }
 
     function user(): BelongsTo {
         return $this->belongsTo(User::class);
+    }
+
+    function cat(): BelongsTo {
+        return $this->belongsTo(Cat::class);
     }
 
     function getDateAttribute() {
