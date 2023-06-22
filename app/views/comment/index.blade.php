@@ -22,8 +22,8 @@
             <tr>
                 <x-td> <a href="{{ route('comment.edit', $comment ) }}">{{ $comment->name }}</a></x-td>
                 <x-td> {{ $comment->email }}</x-td>
-                <x-td> {{ $comment->post->title }}</x-td>
-                <x-td> {{ $comment->user->name }}</x-td>
+                <x-td> {{ @$comment->post->title }}</x-td>
+                <x-td> {{ @$comment->user->name }}</x-td>
                 <x-td> 
                     {{ $comment->created_at }} <br />
                     {{ $comment->updated_at }}

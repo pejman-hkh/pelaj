@@ -39,9 +39,10 @@
                 <aside class="w-full md:w-1/6 items-center px-3">
                    <x-card>
                     <ul>
-                        <li><a href="{{ route('post.index') }}">Posts</a></li>
-                        <li class="mt-4"><a href="{{ route('menu.index') }}">Menus</a></li>
-                        <li class="mt-4"><a href="{{ route('config.index') }}">Configs</a></li>
+                        @foreach ($models as $model)
+                        <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$model }}">{{ $model }}</a></li>
+                        @endforeach
+          
                     </ul>
                    </x-card>             
                 </aside>

@@ -16,6 +16,10 @@ class Menu extends Model
         'url',
     ];
 
+    public static $formExceptColumns = [
+        'user_id',
+    ];
+
     function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
@@ -29,18 +33,22 @@ class Menu extends Model
     }   
 
     function getPositionTitleAttribute() {
-        return $this->positions[ $this->position-1 ]?->title;
+        return $this->positions[ $this->position ];
     }
     
+    function getPositionArrayAttribute() {
+        return $this->positions;
+    }
+
     function getPositionsAttribute() {
         $place = 1;
         return [
-            (object)[ 'val' => $place++, 'title' => __('Top')],
-            (object)[ 'val' => $place++, 'title' => __('TopCenter')],
-            (object)[ 'val' => $place++, 'title' => __('Right')],
-            (object)[ 'val' => $place++, 'title' => __('Left')],
-            (object)[ 'val' => $place++, 'title' => __('Bottom')],
-            (object)[ 'val' => $place++, 'title' => __('Footer')],
+            $place++ => __('Top'),
+            $place++ => __('TopCenter'),
+            $place++ => __('Right'),
+            $place++ => __('Left'),
+            $place++ => __('Bottom'),
+            $place++ => __('Footer'),
         ];
     }
 

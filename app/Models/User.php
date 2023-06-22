@@ -42,4 +42,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static $listExceptColumns = [
+        'password',
+        'email_verified_at',
+        'remember_token',
+    ];
+
+    public function getListTitleAttribute() {
+        return $this->name;
+    } 
+
+    public function getListLinkAttribute() {
+        return url('/').'/manager/index/'.explode("\\", get_class() )[2].'?id='.$this->id;
+    }
 }

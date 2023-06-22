@@ -18,6 +18,18 @@ class Post extends Model
         'note',
     ];
 
+    public static $listExceptColumns = [
+        'note',
+    ];
+
+    public static $formExceptColumns = [
+        'user_id',
+    ];
+
+    function getListTitleAttribute() {
+        return $this->title;
+    }
+
     function comments() {
         return $this->hasMany(Comment::class, 'post_id','id');
     }
