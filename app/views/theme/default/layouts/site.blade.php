@@ -101,7 +101,7 @@
             <div class="w-full bg-white shadow sm:rounded-lg flex flex-col my-4 p-6">
                 <p class="text-xl font-semibold pb-5">About Us</p>
                 <p class="pb-2">{{ $configs->about }}</p>
-                <a href="#" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
+                <a href="{{ $configs->aboutUrl }}" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
                     Get to know us
                 </a>
             </div>
@@ -136,7 +136,7 @@
                 @endforeach
      
             </div>
-            <div class="uppercase pb-6">&copy; myblog.com</div>
+            <div class="uppercase pb-6">&copy; {{ $configs->siteUrl }}</div>
         </div>
     </footer>
 </body>

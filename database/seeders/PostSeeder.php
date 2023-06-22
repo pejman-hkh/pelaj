@@ -17,7 +17,19 @@ class PostSeeder extends Seeder
             'url' => 'about',
             'note' => 'About text ...',
             'user_id' => 1,
+            'cat_id' => 1,
+            'status' => 0,
+            'enableComments' => 0,
+        ]);        
+
+        \App\Models\Post::create([
+            'title' => __('First Post'),
+            'url' => 'first',
+            'note' => 'First post text ...',
+            'user_id' => 1,
+            'cat_id' => 1,
             'status' => 1,
+            'enableComments' => 1,
         ]);
     }
 }

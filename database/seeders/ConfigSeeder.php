@@ -22,6 +22,18 @@ class ConfigSeeder extends Seeder
             'key' => 'about',
             'val' => 'Tiny Blog in Laravel',
             'user_id' => 1
+        ]);  
+
+        \App\Models\Config::create([
+            'key' => 'aboutUrl',
+            'val' => 'about',
+            'user_id' => 1
+        ]);      
+
+        \App\Models\Config::create([
+            'key' => 'siteUrl',
+            'val' => 'test.com',
+            'user_id' => 1
         ]);
     }
 }

@@ -14,6 +14,6 @@ class HomeController extends Controller
     #[Get('/', name : 'home')]
     public function index( Request $request ): View
     {
-        return view('Site::welcome', [ 'posts' => Post::paginate(5) ]);
+        return view('Site::welcome', [ 'posts' => Post::where('status', 1)->paginate(5) ]);
     }
 }

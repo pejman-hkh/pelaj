@@ -16,6 +16,7 @@
         </div>
     </article>
 
+    @if( $post->enableComments )
     <div class="w-full sm:max-w mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         <h1 class="font-bold mb-4">Comments: </h1>
         @foreach ( @$post->comments as $comment )
@@ -58,4 +59,5 @@
             </div>
         </form>
     </div>
+    @endif
 </x-site-layout>
