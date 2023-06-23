@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCommentRequest;
 use Illuminate\View\View;
 use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Middleware;
@@ -12,7 +13,7 @@ use Illuminate\Support\Facades\Redirect;
 class CommentController extends Controller
 {
     #[Post('comment')]
-    public function store( Request $request )
+    public function store( StoreCommentRequest $request )
     {
         $comment = new \App\Models\Comment;
         $comment->post_id = $request->postid;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreContactRequest;
 use Illuminate\View\View;
 use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Post;
@@ -20,7 +21,7 @@ class ContactController extends Controller
         ]);
     }
     #[Post('contact')]
-    public function store( Request $request )
+    public function store( StoreContactRequest $request )
     {
         $contact = new \App\Models\Contact;
         $contact->name = $request->name;
