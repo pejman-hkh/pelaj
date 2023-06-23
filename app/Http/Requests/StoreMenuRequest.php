@@ -26,16 +26,4 @@ class StoreMenuRequest extends FormRequest
             //
         ];
     }
-
-    public function save() {
-        $menu = new Menu();
-        $menu->title = $this->title;
-        $menu->url = $this->url;
-        $menu->position = $this->position;
-        $menu->user_id = (int)$this->user()->id;
-
-        $menu->save();
-
-        return $menu;        
-    }
 }

@@ -62,8 +62,10 @@ class Post extends Model
         return $ret;
     }
 
-    function comments() {
-        return $this->hasMany(Comment::class, 'post_id','id');
+    function getCommentsAttribute() {
+        return Comment::where('post_id', $this->id)->paginate(5);
+
+        //return $this->hasMany(Comment::class, 'post_id','id');
     }
 
     function user(): BelongsTo {

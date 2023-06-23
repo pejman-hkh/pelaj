@@ -10,6 +10,11 @@ class Comment extends Model
 {
     use HasFactory;
 
+    public static $listExceptColumns = [
+        'note',
+        'answer',
+    ];
+
     function getStatusTitleAttribute() {
         return $this->statusArray[ $this->status ];
     }

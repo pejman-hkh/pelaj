@@ -29,7 +29,7 @@
                 <x-td>
          
                     @if ( substr( $column, -3 ) == '_id' )
-                        <a href="{{ @$list->$cl->listLink?:(url('/').'/manager/index/'.ucfirst($cl).'?id='.@$list->$cl->id) }}">{{ @$list->$cl->listTitle }}</a>
+                        <a href="{{ @$list->$cl->listLink?:(url('/').'/manager/index/'.ucfirst($cl).'?id='.@$list->$cl->id) }}">{{ @$list->$cl->listTitle?:@$list->$cl->title }}</a>
                     @elseif( $list->$ct )
                         {{ $list->$ct }}
                     @else

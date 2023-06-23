@@ -32,9 +32,14 @@ class ShareViewSite
             $menuPosition[ $menu->position ][] = $menu;
         }
 
+        $catid = 0;
+        if( $request->route()->uri == 'cat/{id}' ){
+            $catid = $request->route()->parameters['id'];
+        }
+
         $this->view->share( [
             'menus' => $menuPosition,
-            'cats' => \App\Models\Cat::all(),
+            'cats' => \App\Models\Cat::where("cat_id", $catid )->get(),
             'configs' => \App\Models\Config::keyPair()
         ]);        
 
