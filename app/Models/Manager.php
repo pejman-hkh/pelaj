@@ -17,6 +17,8 @@ class Manager extends Model
         $tableName = $nmodel->getTable();
         $dbName = env('DB_DATABASE', 'forge');
   
+        //in laravel there is not method for get columns with ORDINAL_POSITION priority so i use this that should change for work with another databases ....
+        
         $columns = \DB::select("SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = ? and table_schema = ? order by ORDINAL_POSITION asc", [$tableName, $dbName ]);
         $ret = [];
         foreach( $columns as $column ) {
