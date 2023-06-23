@@ -35,5 +35,18 @@ class ConfigSeeder extends Seeder
             'val' => 'test.com',
             'user_id' => 1
         ]);
+
+        \App\Models\Config::create([
+            'key' => 'description',
+            'val' => 'This is site description',
+            'user_id' => 1
+        ]);
+
+
+        \App\Models\Config::create([
+            'key' => 'keywords',
+            'val' => 'This is site keywords, blog, free laravel cms, free blog in laravel, free opensource laravel cms',
+            'user_id' => 1
+        ]);
     }
 }
