@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <x-card :title="__('Search')">
+    <x-card :title="__('Search')" :bodyClass="'hidden'" class="search">
         <form>
             @include('manager.partials/form')
 

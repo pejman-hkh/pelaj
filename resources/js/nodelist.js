@@ -41,11 +41,11 @@ NodeList.prototype.each = function( callback ) {
 
 
 NodeList.prototype.prev = function() {
-	return _nodeList( [ this[0].previousSibling ] );
+	return _nodeList( [ this[0].previousElementSibling ] );
 }
 
 NodeList.prototype.next = function() {
-	return _nodeList( [ this[0].nextSibling ] );
+	return _nodeList( [ this[0].nextElementSibling ] );
 }
 
 NodeList.prototype.find = function( val ) {

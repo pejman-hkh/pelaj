@@ -40,3 +40,13 @@ if( typeof formJsonData !== 'undefined' ) {
         }
     }
 }
+
+NodeList.prototype.toggleClass = function( cls ) {
+	return this.each(function() {
+		this.classList.toggle(cls);
+	});
+}
+
+$(".search h1").click(function() {
+	$(this).next().toggleClass('hidden');
+});
