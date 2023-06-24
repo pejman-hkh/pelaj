@@ -15,6 +15,7 @@ class CatSeeder extends Seeder
         \App\Models\Cat::create([
             'title' => __('Public'),
             'user_id' => 1,
+            'cat_id' => 0,
         ]);
     }
 }

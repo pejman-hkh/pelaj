@@ -16,6 +16,7 @@ class CommentSeeder extends Seeder
             'name' => __('Test'),
             'email' => 'test@test.test',
             'note' => 'About text ...',
+            'answer' => '',
             'user_id' => 1,
             'post_id' => 1,
             'status' => 1,

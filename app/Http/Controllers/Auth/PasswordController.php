@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
+use Spatie\RouteAttributes\Attributes\Put;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+#[Middleware('auth')]
 class PasswordController extends Controller
 {
     /**
      * Update the user's password.
      */
+    #[Put('confirm-password', name : 'password.update')]
     public function update(Request $request): RedirectResponse
     {
         $validated = $request->validateWithBag('updatePassword', [

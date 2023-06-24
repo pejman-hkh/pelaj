@@ -10,11 +10,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
+use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Middleware;
+
+
+#[Middleware('auth')]
 class ConfirmablePasswordController extends Controller
 {
     /**
      * Show the confirm password view.
      */
+    #[Get('confirm-password', name : 'password.confirm')]
     public function show(): View
     {
         return view('auth.confirm-password');
@@ -23,6 +30,7 @@ class ConfirmablePasswordController extends Controller
     /**
      * Confirm the user's password.
      */
+    #[Post('confirm-password')]
     public function store(Request $request): RedirectResponse
     {
         if (! Auth::guard('web')->validate([

@@ -18,6 +18,7 @@ class MenuSeeder extends Seeder
             'title' => __('Home'),
             'url' => '',
             'position' => 1,
+            'menu_id' => 0,
             'user_id' => 1
         ]);        
 
@@ -25,6 +26,7 @@ class MenuSeeder extends Seeder
             'title' => __('About'),
             'url' => 'about',
             'position' => 1,
+            'menu_id' => 0,
             'user_id' => 1
         ]);
 
@@ -32,6 +34,7 @@ class MenuSeeder extends Seeder
             'title' => __('Contact'),
             'url' => 'contact',
             'position' => 1,
+            'menu_id' => 0,
             'user_id' => 1
         ]);        
 
@@ -39,6 +42,7 @@ class MenuSeeder extends Seeder
             'title' => __('Home'),
             'url' => '',
             'position' => 6,
+            'menu_id' => 0,
             'user_id' => 1
         ]);        
 
@@ -46,6 +50,7 @@ class MenuSeeder extends Seeder
             'title' => __('About'),
             'url' => 'about',
             'position' => 6,
+            'menu_id' => 0,
             'user_id' => 1
         ]);
 
@@ -53,6 +58,7 @@ class MenuSeeder extends Seeder
             'title' => __('Contact'),
             'url' => 'contact',
             'position' => 6,
+            'menu_id' => 0,
             'user_id' => 1
         ]);
     }

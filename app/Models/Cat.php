@@ -14,6 +14,10 @@ class Cat extends Model
         'user_id',
     ];
 
+    function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
+    
     function getLinkAttribute() {
         return url('/').'/cat/'.$this->id;
     }
