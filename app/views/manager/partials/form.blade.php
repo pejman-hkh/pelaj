@@ -36,13 +36,5 @@
             </div>                
             @endif
 
-            @if ( substr( $column[0], -3 ) == '_id' )
-                <div class="mb-4">
-                    {{ __('Search') }} {{ ucfirst($column[0]) }}
-                    <div class="mt-4">
-                        <select class="choicesjs"></select>
-                    </div>
-                </div>
-            @endif
-
+            
             @endforeach
