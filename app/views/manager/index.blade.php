@@ -5,6 +5,20 @@
         </h2>
     </x-slot>
 
+    <x-card :title="__('Search')">
+        <form>
+            @include('manager.partials/form')
+
+            <div class="flex items-center justify-end mt-4">
+                <x-primary-button class="ml-3">
+                    {{ __('Search') }}
+                </x-primary-button>
+            </div>            
+
+        </form>
+ 
+    </x-card>
+
     <x-card>
             <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> New {{ $modelName }}</a></x-primary-button>
             <x-table>
@@ -37,7 +51,7 @@
                         {{ $list->$column }}    
                     @endif
                 </x-td>
-        
+
                 @endforeach
 
                 <x-td>
