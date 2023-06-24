@@ -104,6 +104,10 @@ NodeList.prototype.removeClass = function( name ) {
 
 
 NodeList.prototype.data = function( key, val ) {
+	if( typeof key === 'undefined' ) {
+		return this.dataset1;
+	}
+
 	if( typeof val === 'undefined' ) {
 		let ret;
 		this.each(function() {

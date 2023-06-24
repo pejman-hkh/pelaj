@@ -47,11 +47,14 @@ class ManagerController extends Controller
                 }
             }
 
+
+
             if( isset( $modelClass::$listExceptColumns ) ) foreach( $columns as $key => $column ) {
                 if( in_array( $column[0], @$modelClass::$listExceptColumns ) ) {
                     unset( $columns[ $key ]);
                 }
             }
+
 
             $lists = $query->paginate(5);
 

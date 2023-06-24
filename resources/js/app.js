@@ -1,12 +1,16 @@
 import './bootstrap';
 import '../css/quill.snow.css';
 
+
 import Alpine from 'alpinejs';
 import Quill from 'quill';
+import ChoicesJs from 'choices.js';
+import 'choices.js/public/assets/styles/choices.min.css';
 
 window.Alpine = Alpine;
 Alpine.start();
 
+$(".search textarea").removeClass('quill');
 $('.quill').each(function() {
 	let editor = document.createElement('div');
 
@@ -46,6 +50,24 @@ NodeList.prototype.toggleClass = function( cls ) {
 		this.classList.toggle(cls);
 	});
 }
+
+function debounce(func, timeout = 300){
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
+
+//working on ajax 
+NodeList.prototype.ChoicesJs = function( cls ) {
+	return this.each(function() {
+		let ch = new ChoicesJs( this, $(this).data() );
+
+	});
+}
+
+$(".choicesjs").ChoicesJs();
 
 $(".search h1").click(function() {
 	$(this).next().toggleClass('hidden');
