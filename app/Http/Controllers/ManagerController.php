@@ -27,7 +27,7 @@ class ManagerController extends Controller
     }
 
     #[Get('/manager/index/{model?}')]
-    public function index( String $model ): View
+    public function index( String $model, Request $request ): View
     {
         if( in_array( $model, Manager::getModelNames() ) ) {
             $modelClass = '\App\Models\\'.$model;
@@ -35,13 +35,27 @@ class ManagerController extends Controller
 
             $columns = Manager::getColumns( $model );
 
+            $query = $modelClass::select("*");
+
+            foreach( $columns as $column ) {
+                if( $request->{$column[0]} ) {
+                    if ( in_array( $column[1], ['string', 'text', 'longtext' ] )) {
+                        $query->where( $column[0], "like", '%'.($request->{$column[0]}).'%');
+                    } else {
+                        $query->where( $column[0], $request->{$column[0]});
+                    }
+                }
+            }
+
             if( isset( $modelClass::$listExceptColumns ) ) foreach( $columns as $key => $column ) {
                 if( in_array( $column[0], @$modelClass::$listExceptColumns ) ) {
                     unset( $columns[ $key ]);
                 }
             }
 
-            return view('manager.index', [ 'modelName' => $model, 'model' => $nmodel, 'columns' => $columns, 'lists' => $modelClass::paginate(5) ] );
+            $lists = $query->paginate(5);
+
+            return view('manager.index', [ 'modelName' => $model, 'model' => $nmodel, 'columns' => $columns, 'lists' => $lists ] );
         } else {
             abort( 404 );
         }
@@ -142,7 +156,7 @@ class ManagerController extends Controller
             abort(404);
             return;
         }
-                
+
         $modelClass = '\App\Models\\'.$model;
         $nmodel = $modelClass::findOrFail( $id );
         $columns = Manager::getColumns( $model );

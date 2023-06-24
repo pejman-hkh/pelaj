@@ -26,6 +26,7 @@
                         $ct = $column.'Title';
                         $cl = substr( $column, 0, -3 )
                     @endphp
+    
                 <x-td>
          
                     @if ( substr( $column, -3 ) == '_id' )
@@ -36,6 +37,7 @@
                         {{ $list->$column }}    
                     @endif
                 </x-td>
+        
                 @endforeach
 
                 <x-td>
