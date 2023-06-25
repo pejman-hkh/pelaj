@@ -1,6 +1,7 @@
 import './bootstrap';
 import '../css/quill.snow.css';
-
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
 
 import Alpine from 'alpinejs';
 import Quill from 'quill';
@@ -10,13 +11,45 @@ import 'choices.js/public/assets/styles/choices.min.css';
 window.Alpine = Alpine;
 Alpine.start();
 
+hljs.configure({   // optionally configure hljs
+  languages: ['javascript', 'ruby', 'python']
+});
+
 $(".search textarea").removeClass('quill');
+
+var toolbarOptions = [
+  [ 'bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+  ['image', 'video'],
+  ['clean']                                         // remove formatting button
+];
+
 $('.quill').each(function() {
 	let editor = document.createElement('div');
 
 	this.parentElement.insertBefore(editor, this);
 
 	let quill = new Quill(editor, {
+
+		modules: {
+			syntax: {
+			  highlight: (text) => hljs.highlightAuto(text).value,
+			},
+			toolbar: toolbarOptions  // Include button in toolbar
+		},
 		theme: 'snow'
 	});
 
