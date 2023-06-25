@@ -27,7 +27,7 @@ class Post extends Model
         'user_id',
     ];
 
-    public static $formEditorColums = [
+    public static $formEditorColumns = [
         'note',
         'shortnote',
     ];

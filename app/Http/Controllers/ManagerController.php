@@ -79,7 +79,7 @@ class ManagerController extends Controller
                 }
             }
 
-            return view('manager.create', [ 'editorColumns' => isset($modelClass::$formEditorColums)?@$modelClass::$formEditorColums:[], 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
+            return view('manager.create', [ 'editorColumns' => isset($modelClass::$formEditorColumns)?@$modelClass::$formEditorColumns:[], 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
         } else {
             abort( 404 );
         }     
@@ -159,7 +159,7 @@ class ManagerController extends Controller
 
             $nmodel = $modelClass::findOrFail( $id );
       
-            return view('manager.create', [ 'editorColumns' => isset($modelClass::$formEditorColums)?@$modelClass::$formEditorColums:[], 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
+            return view('manager.create', [ 'editorColumns' => isset($modelClass::$formEditorColumns)?@$modelClass::$formEditorColumns:[], 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
         } else {
             abort( 404 );
         }        

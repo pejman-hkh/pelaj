@@ -15,7 +15,7 @@ class Comment extends Model
         'answer',
     ];
 
-    public static $formEditorColums = [
+    public static $formEditorColumns = [
         'answer',
     ];
 
