@@ -20,6 +20,7 @@ class Post extends Model
 
     public static $listExceptColumns = [
         'note',
+        'shortnote',
     ];
 
     public static $formExceptColumns = [
