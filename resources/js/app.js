@@ -17,6 +17,10 @@ hljs.configure({   // optionally configure hljs
 
 $(".search textarea").removeClass('quill');
 
+$(".search input[type='file']").each(function() {
+	this.remove();
+});
+
 var toolbarOptions = [
   [ 'bold', 'italic', 'underline', 'strike'],        // toggled buttons
   ['blockquote', 'code-block'],
