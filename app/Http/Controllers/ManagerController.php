@@ -22,10 +22,7 @@ class ManagerController extends Controller
      * Display a listing of the resource.
      */
 
-    public function __construct() {
-
-    }
-
+ 
     #[Get('/manager/index/{model?}')]
     public function index( String $model, Request $request ): View
     {

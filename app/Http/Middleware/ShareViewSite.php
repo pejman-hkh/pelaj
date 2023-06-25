@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\Support\Facades\View;
 
+
 class ShareViewSite
 {
     /**

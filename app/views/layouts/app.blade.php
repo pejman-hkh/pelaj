@@ -36,7 +36,7 @@
                    <x-card>
                     <ul>
                         @foreach ($models as $model)
-                        <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$model }}">{{ $model }}</a></li>
+                        <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$model }}">{{ __($model) }}</a></li>
                         @endforeach
           
                     </ul>

@@ -20,7 +20,7 @@
     </x-card>
 
     <x-card>
-            <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> New {{ $modelName }}</a></x-primary-button>
+            <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> {{ __('New') }} {{ __($modelName) }}</a></x-primary-button>
             <x-table>
                 <x-thead>
                     @foreach( $columns as $column )
