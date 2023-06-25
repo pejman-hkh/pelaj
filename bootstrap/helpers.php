@@ -2,7 +2,7 @@
 
 function __($key = null, $replace = [], $locale = null)
 {
-	
+
 	$lang = \App\Models\Lang::where('key', $key)->first();
 
 	if( ! @$lang->id && $key ) {

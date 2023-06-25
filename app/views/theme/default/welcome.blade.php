@@ -9,10 +9,10 @@
                     <a href="{{ $post->link }}" class="text-blue-700 text-sm font-bold uppercase pb-4">{{ $post->title }}</a>
 
                     <p href="#" class="text-sm pb-3">
-                        By <a href="#" class="font-semibold hover:text-gray-800">{{ $post->user->name }}</a>, Published on {{ $post->date }}
+                        {{ __('By') }} <a href="#" class="font-semibold hover:text-gray-800">{{ $post->user->name }}</a>, {{ __('Published on') }} {{ $post->date }}
                     </p>
                     <a href="#" class="pb-6">{!! $post->shortnote !!}</a>
-                    <a href="{{ $post->link }}" class="uppercase text-gray-800 hover:text-black">Continue Reading <i class="fas fa-arrow-right"></i></a>
+                    <a href="{{ $post->link }}" class="uppercase text-gray-800 hover:text-black">{{ __('Continue Reading') }} <i class="fas fa-arrow-right"></i></a>
                 </div>
             </article>
    

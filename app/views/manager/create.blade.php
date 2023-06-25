@@ -1,14 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __( ucfirst( $modelName ) ) }} {{ @$model->id?__('Edit ').$model->title:__('New')}}
+        {{ @$model->id?__(':model Edit ', ['model' => __( ucfirst( $modelName ) ) ]).$model->title:__(':model New', ['model' => __( ucfirst( $modelName ) ) ])}}
+
+
         </h2>
     </x-slot>
 
 
     <x-card>
         
-        <x-primary-button class="my-4"><a href="{{ url('/').'/manager/index/'.$modelName }}"> {{ __( ucfirst($modelName) ) }} {{ __('List') }} </a></x-primary-button>
+        <x-primary-button class="my-4"><a href="{{ url('/').'/manager/index/'.$modelName }}"> {{ __(':model List', ['model' => __( ucfirst( $modelName ) ) ]) }} </a></x-primary-button>
         
         @if( @$model->id )
         <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.$modelName }}"> {{ __('New') }} {{ __( ucfirst($modelName) ) }} </a></x-primary-button>

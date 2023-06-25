@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $modelName.__(' lists') }}
+            {{ __(':model lists', ['model' => __( $modelName ) ]) }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,7 @@
     </x-card>
 
     <x-card>
-            <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> {{ __('New') }} {{ __($modelName) }}</a></x-primary-button>
+            <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> {{ __('New :model', ['model' => __( $modelName ) ]) }} </a></x-primary-button>
             <x-table>
                 <x-thead>
                     @foreach( $columns as $column )

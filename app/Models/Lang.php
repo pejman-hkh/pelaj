@@ -29,6 +29,6 @@ class Lang extends Model
                 $json[ $lang->key ] = $lang->key;
         }
 
-        file_put_contents( $file, json_encode( $json, JSON_PRETTY_PRINT ) );
+        file_put_contents( $file, json_encode( $json, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE ) );
     }
 }

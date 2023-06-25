@@ -14,7 +14,7 @@ define('LARAVEL_START', microtime(true));
 | loading of any of our classes manually. It's great to relax.
 |
 */
-
+require __DIR__.'/bootstrap/helpers.php';
 require __DIR__.'/vendor/autoload.php';
 
 $app = require_once __DIR__.'/bootstrap/app.php';

@@ -15,8 +15,8 @@ class PostSeeder extends Seeder
         \App\Models\Post::create([
             'title' => __('About'),
             'url' => 'about',
-            'shortnote' => 'About text ...',
-            'note' => 'About text continue ...',
+            'shortnote' => __('About text ...'),
+            'note' => __('About text continue ...'),
             'user_id' => 1,
             'cat_id' => 1,
             'status' => 0,
@@ -26,8 +26,8 @@ class PostSeeder extends Seeder
         \App\Models\Post::create([
             'title' => __('First Post'),
             'url' => 'first',
-            'shortnote' => 'First post text ...',
-            'note' => 'First post text continue ...',
+            'shortnote' => __('First post text ...'),
+            'note' => __('First post text continue ...'),
             'user_id' => 1,
             'cat_id' => 1,
             'status' => 1,
