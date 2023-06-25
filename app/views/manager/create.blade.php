@@ -8,10 +8,10 @@
 
     <x-card>
         
-        <x-primary-button class="my-4"><a href="{{ url('/').'/manager/index/'.$modelName }}"> {{ ucfirst($modelName) }} {{ __('List') }} </a></x-primary-button>
+        <x-primary-button class="my-4"><a href="{{ url('/').'/manager/index/'.$modelName }}"> {{ __( ucfirst($modelName) ) }} {{ __('List') }} </a></x-primary-button>
         
         @if( @$model->id )
-        <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.$modelName }}"> {{ __('New') }} {{ ucfirst($modelName) }} </a></x-primary-button>
+        <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.$modelName }}"> {{ __('New') }} {{ __( ucfirst($modelName) ) }} </a></x-primary-button>
         @endif
 
         <form method="POST" action="{{ @$model->id?(url('/').'/manager/edit/'.$modelName.'/'.$model->id):(url('/').'/manager/create/'.$modelName) }}">
