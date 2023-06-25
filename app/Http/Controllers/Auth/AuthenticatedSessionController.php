@@ -14,12 +14,12 @@ use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Middleware;
 
-#[Middleware("guest")]
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
+    #[Middleware("guest")]
     #[Get('login', name: "login")]
     public function create(): View
     {
@@ -29,6 +29,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+    #[Middleware("guest")]
     #[Post('login')]
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -42,9 +43,11 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    #[Get('logout', name: "logout")]
+    #[Middleware("auth")]
+    #[Post('logout', name: "logout")]
     public function destroy(Request $request): RedirectResponse
     {
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
