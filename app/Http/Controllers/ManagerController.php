@@ -104,7 +104,11 @@ class ManagerController extends Controller
         } else {        
             $columns = Manager::getColumns( $model );
 
+            $hasPriority = false;
             foreach( $columns as $column ) {
+                if( $column[0] == 'priority' ) {
+                    $hasPriority = true;
+                }
                 if( $column[0] == 'created_at' || $columns[0] == 'updated_at' ) continue;
                 $cl = $column[0];
                 if( $column[1] == 'integer' || $column[1] == 'boolean' ) {
@@ -119,6 +123,11 @@ class ManagerController extends Controller
 
             $nmodel->save();
             $id = $nmodel->id;
+            if( $hasPriority ) {
+                $nmodel->priority = $id;
+                $nmodel->save();
+            }
+
             return Redirect::to( url('/').'/manager/edit/'.$model.'/'.$id )->with('status', $model.'-updated');    
         }
 
