@@ -17,10 +17,14 @@ class Media extends Model
         if($request->hasFile('file'))
         {
             foreach ($files as $file) {
-                $media = new Media;
-                $media->file = $name = $file->getClientOriginalName();
-                $media->save();
-                $file->move(public_path() . '/media/', $name );
+                $extension =  $file->clientExtension();
+                if( in_array( $extension, ['jpeg', 'jpg', 'png', 'pdf', 'docx' ]) ) {
+                    $media = new Media;
+                    $media->file = $name = $file->getClientOriginalName();
+
+                    $media->save();
+                    $file->move(public_path() . '/media/', $name );
+                }
             }
         }
     }
