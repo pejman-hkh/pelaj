@@ -12,7 +12,7 @@ window.Alpine = Alpine;
 Alpine.start();
 
 hljs.configure({   // optionally configure hljs
-  languages: ['javascript', 'ruby', 'python']
+  languages: ['javascript', 'ruby', 'python', 'php']
 });
 
 $(".search textarea").removeClass('quill');
