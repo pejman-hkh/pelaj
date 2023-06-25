@@ -16,7 +16,7 @@
         <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.$modelName }}"> {{ __('New') }} {{ __( ucfirst($modelName) ) }} </a></x-primary-button>
         @endif
 
-        <form method="POST" action="{{ @$model->id?(url('/').'/manager/edit/'.$modelName.'/'.$model->id):(url('/').'/manager/create/'.$modelName) }}">
+        <form method="POST" action="{{ @$model->id?(url('/').'/manager/edit/'.$modelName.'/'.$model->id):(url('/').'/manager/create/'.$modelName) }}"  enctype="multipart/form-data">
             @csrf
             @if( @$model->id )
              @method('PUT')

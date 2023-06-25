@@ -98,20 +98,26 @@ class ManagerController extends Controller
 
         $modelClass = '\App\Models\\'.$model;
         $nmodel = new $modelClass;
-        $columns = Manager::getColumns( $model );
+        if( method_exists( $nmodel, 'formStore') ) {
+            $nmodel->formStore( $request );
+            return Redirect::to( url('/').'/manager/index/'.$model )->with('status', $model.'-updated');    
+        } else {        
+            $columns = Manager::getColumns( $model );
 
-        foreach( $columns as $column ) {
-            if( $column[0] == 'created_at' || $columns[0] == 'updated_at' ) continue;
-            $cl = $column[0];
-            $nmodel->$cl = $request->$cl;
+            foreach( $columns as $column ) {
+                if( $column[0] == 'created_at' || $columns[0] == 'updated_at' ) continue;
+                $cl = $column[0];
+                $nmodel->$cl = $request->$cl;
+            }
+
+            $nmodel->user_id = (int)$request->user()->id;
+
+            $nmodel->save();
+            $id = $nmodel->id;
+            return Redirect::to( url('/').'/manager/edit/'.$model.'/'.$id )->with('status', $model.'-updated');    
         }
 
-        $nmodel->user_id = (int)$request->user()->id;
 
-        $nmodel->save();
-        $id = $nmodel->id;
-
-        return Redirect::to( url('/').'/manager/edit/'.$model.'/'.$id )->with('status', $model.'-updated');    
     }
 
     /**

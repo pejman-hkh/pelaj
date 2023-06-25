@@ -46,7 +46,11 @@
                     @if ( substr( $column, -3 ) == '_id' )
                         <a href="{{ @$list->$cl->listLink?:(url('/').'/manager/index/'.ucfirst($cl).'?id='.@$list->$cl->id) }}">{{ @$list->$cl->listTitle?:@$list->$cl->title }}</a>
                     @elseif( $list->$ct )
+                        @if( is_array( $list->$ct ) )
+                        {!! implode('', $list->$ct) !!}
+                        @else
                         {{ $list->$ct }}
+                        @endif
                     @else
                         {{ $list->$column }}    
                     @endif
@@ -55,7 +59,9 @@
                 @endforeach
 
                 <x-td>
+                    @if( ! @$list->listDisableEdit )
                     <a href="{{ url('/').'/manager/edit/'.$modelName.'/'.$list->id }}"> {{ __('Edit') }}</a> / 
+                    @endif
                     <form method="POST" action="{{ url('/').'/manager/destroy/'.$modelName.'/'.$list->id }}">
                     @csrf
                     @method('DELETE')

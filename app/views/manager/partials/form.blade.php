@@ -1,12 +1,18 @@
             @foreach( $columns as $column )
     
-            @if( $column[1] == 'string')
+            @if( $column[0] == 'file')
+                <div class="mb-4">
+                    <x-input-label for="{{ $column[0] }}" :value="__( ucfirst($column[0]) )" />
+                    <x-upload id="{{ $column[0] }}" class="block mt-1 w-full" type="text" name="{{ $column[0] }}[]" />
+                    <x-input-error :messages="$errors->get( $column[0] )" class="mt-2" />
+                </div>            
+            @elseif( $column[1] == 'string')
                 <div class="mb-4">
                     <x-input-label for="{{ $column[0] }}" :value="__( ucfirst($column[0]) )" />
                     <x-text-input id="{{ $column[0] }}" class="block mt-1 w-full" type="text" name="{{ $column[0] }}" />
                     <x-input-error :messages="$errors->get( $column[0] )" class="mt-2" />
                 </div>
-            @elseif ( $column[1] == 'text' )    
+            @elseif ( $column[1] == 'text' ) 
                 <div class="mb-4">
                     <x-input-label for="{{ $column[0] }}" :value="__( ucfirst($column[0]) )" />
                     <x-textarea id="{{ $column[0] }}" class="quill block mt-1 w-full" name="{{ $column[0] }}" />
