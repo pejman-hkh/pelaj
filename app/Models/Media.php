@@ -22,11 +22,16 @@ class Media extends Model
                 $allowedExtensions = explode(",",$config->allowedExtensions );
 
                 if( in_array( $extension, $allowedExtensions ) ) {
+                    $dir = public_path() . '/media/';
+                    $name = $file->getClientOriginalName();
+                    if( file_exists( $dir.$name ) ) {
+                        continue;
+                    }
+                    
                     $media = new Media;
-                    $media->file = $name = $file->getClientOriginalName();
-
+                    $media->file = $name;
                     $media->save();
-                    $file->move(public_path() . '/media/', $name );
+                    $file->move( $dir, $name );
                 }
             }
         }
