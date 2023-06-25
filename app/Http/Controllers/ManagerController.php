@@ -107,7 +107,12 @@ class ManagerController extends Controller
             foreach( $columns as $column ) {
                 if( $column[0] == 'created_at' || $columns[0] == 'updated_at' ) continue;
                 $cl = $column[0];
-                $nmodel->$cl = $request->$cl;
+                if( $column[1] == 'integer' || $column[1] == 'boolean' ) {
+                    echo( $column[0] );
+                    $nmodel->$cl = (int)$request->$cl;
+                } else {
+                    $nmodel->$cl = $request->$cl;
+                }
             }
 
             $nmodel->user_id = (int)$request->user()->id;

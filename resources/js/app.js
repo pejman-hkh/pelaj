@@ -41,6 +41,14 @@ var toolbarOptions = [
   ['clean']                                         // remove formatting button
 ];
 
+function imageHandler() {
+    var range = this.quill.getSelection();
+    var value = prompt('What is the image URL');
+    if(value){
+        this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+    }
+}
+
 $('.quill').each(function() {
 	let editor = document.createElement('div');
 
@@ -52,10 +60,16 @@ $('.quill').each(function() {
 			syntax: {
 			  highlight: (text) => hljs.highlightAuto(text).value,
 			},
-			toolbar: toolbarOptions  // Include button in toolbar
+			toolbar: {
+                container: toolbarOptions,
+                handlers: {
+                    image: imageHandler
+                }
+            }
 		},
 		theme: 'snow'
 	});
+
 
 	$(this).data('quill', quill );
 	$(this).addClass('hidden');

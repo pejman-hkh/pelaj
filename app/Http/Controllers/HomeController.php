@@ -14,12 +14,12 @@ class HomeController extends Controller
     #[Get('/', name : 'home')]
     public function index( Request $request ): View
     {
-        return view('Site::welcome', [ 'posts' => Post::where('status', 1)->paginate(5) ]);
+        return view('Site::welcome', [ 'posts' => Post::where('status', 1)->orderBy('id', 'desc')->paginate(5) ]);
     }
 
     #[Get('/cat/{id}')]
     public function cat( Request $request, $catid ): View 
     {
-        return view('Site::welcome', ['posts' => Post::where('status', 1)->where('cat_id', $catid )->paginate(5)  ]);
+        return view('Site::welcome', ['posts' => Post::where('status', 1)->where('cat_id', $catid )->orderBy('id', 'desc')->paginate(5)  ]);
     }
 }
