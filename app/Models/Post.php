@@ -27,6 +27,11 @@ class Post extends Model
         'user_id',
     ];
 
+    public static $formEditorColums = [
+        'note',
+        'shortnote',
+    ];
+
     function getListTitleAttribute() {
         return $this->title;
     }

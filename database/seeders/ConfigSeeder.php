@@ -31,6 +31,12 @@ class ConfigSeeder extends Seeder
         ]);      
 
         \App\Models\Config::create([
+            'key' => 'allowedExtensions',
+            'val' => 'jpeg,jpg,png,pdf,mp4',
+            'user_id' => 1
+        ]);
+
+        \App\Models\Config::create([
             'key' => 'siteUrl',
             'val' => 'test.com',
             'user_id' => 1

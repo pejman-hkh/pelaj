@@ -55,7 +55,7 @@ class ManagerController extends Controller
 
             $lists = $query->paginate(5);
 
-            return view('manager.index', [ 'modelName' => $model, 'model' => $nmodel, 'columns' => $columns, 'lists' => $lists ] );
+            return view('manager.index', [ 'editorColumns' => [], 'modelName' => $model, 'model' => $nmodel, 'columns' => $columns, 'lists' => $lists ] );
         } else {
             abort( 404 );
         }
@@ -79,7 +79,7 @@ class ManagerController extends Controller
                 }
             }
 
-            return view('manager.create', [ 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
+            return view('manager.create', [ 'editorColumns' => isset($modelClass::$formEditorColums)?@$modelClass::$formEditorColums:[], 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
         } else {
             abort( 404 );
         }     
@@ -145,7 +145,7 @@ class ManagerController extends Controller
 
             $nmodel = $modelClass::findOrFail( $id );
       
-            return view('manager.create', [ 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
+            return view('manager.create', [ 'editorColumns' => isset($modelClass::$formEditorColums)?@$modelClass::$formEditorColums:[], 'modelName' => $model, 'columns' => $columns, 'model' =>  $nmodel ] );
         } else {
             abort( 404 );
         }        

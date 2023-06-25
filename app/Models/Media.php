@@ -18,7 +18,10 @@ class Media extends Model
         {
             foreach ($files as $file) {
                 $extension =  $file->clientExtension();
-                if( in_array( $extension, ['jpeg', 'jpg', 'png', 'pdf', 'docx' ]) ) {
+                $config = Config::$keyPair;
+                $allowedExtensions = explode(",",$config->allowedExtensions );
+
+                if( in_array( $extension, $allowedExtensions ) ) {
                     $media = new Media;
                     $media->file = $name = $file->getClientOriginalName();
 

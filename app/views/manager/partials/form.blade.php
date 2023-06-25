@@ -15,7 +15,7 @@
             @elseif ( $column[1] == 'text' ) 
                 <div class="mb-4">
                     <x-input-label for="{{ $column[0] }}" :value="__( ucfirst($column[0]) )" />
-                    <x-textarea id="{{ $column[0] }}" class="quill block mt-1 w-full" name="{{ $column[0] }}" />
+                    <x-textarea id="{{ $column[0] }}" class="{{ in_array( $column[0], $editorColumns ) ?'quill':''}} block mt-1 w-full" name="{{ $column[0] }}" />
                     <x-input-error :messages="$errors->get( $column[0] )" class="mt-2" />
                 </div>
             @elseif ( $column[1] == 'integer' || $column[2] == 'tinyint' )    
