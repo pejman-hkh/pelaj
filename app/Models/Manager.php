@@ -31,9 +31,8 @@ class Manager extends Model
     {
         $path = app_path('Models') . '/*.php';
         $ret = collect(glob($path))->map(function ($file) { $model = basename($file, '.php'); if( $model !== 'Manager' ) return $model; })->toArray();
+        $priority = ['Menu', 'Post', 'Cat', 'Comment', 'Contact' ];
 
-        return $ret;
+        return array_unique( array_merge(  $priority, $ret ) );
     }
-
-
 }
