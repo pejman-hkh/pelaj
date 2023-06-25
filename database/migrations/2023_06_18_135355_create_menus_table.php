@@ -19,6 +19,10 @@ return new class extends Migration
             $table->integer('menu_id');
             $table->tinyInteger('position');
             $table->timestamps();
+
+            $table->index("user_id");
+            $table->index("menu_id");
+            $table->index("position");
         });
     }
 

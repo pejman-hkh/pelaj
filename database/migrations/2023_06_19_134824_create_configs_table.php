@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('key');
             $table->text('val');
             $table->timestamps();
+
+            $table->index("key");
         });
     }
 

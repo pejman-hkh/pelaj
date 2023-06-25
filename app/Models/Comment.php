@@ -15,6 +15,10 @@ class Comment extends Model
         'answer',
     ];
 
+    public static $formEditorColums = [
+        'answer',
+    ];
+
     function getStatusTitleAttribute() {
         return $this->statusArray[ $this->status ];
     }

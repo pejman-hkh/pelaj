@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('cat_id');
             $table->timestamps();
+
+            $table->index("cat_id");
         });
     }
 

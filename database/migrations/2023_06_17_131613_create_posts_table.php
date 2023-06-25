@@ -22,6 +22,12 @@ return new class extends Migration
             $table->text('shortnote');
             $table->text('note');
             $table->timestamps();
+
+            $table->index("title");
+            $table->index("user_id");
+            $table->index("cat_id");
+            $table->index("status");
+            $table->index("url");
         });
     }
 

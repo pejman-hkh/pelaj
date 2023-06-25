@@ -21,6 +21,10 @@ return new class extends Migration
             $table->text('note');
             $table->text('answer');
             $table->timestamps();
+
+            $table->index("user_id");
+            $table->index("post_id");
+            $table->index("status");
         });
     }
 

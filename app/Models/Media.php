@@ -16,9 +16,9 @@ class Media extends Model
 
         if($request->hasFile('file'))
         {
+            $config = Config::keyPair();
             foreach ($files as $file) {
                 $extension =  $file->clientExtension();
-                $config = Config::$keyPair;
                 $allowedExtensions = explode(",",$config->allowedExtensions );
 
                 if( in_array( $extension, $allowedExtensions ) ) {
