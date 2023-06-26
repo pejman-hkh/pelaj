@@ -1,5 +1,4 @@
 <?php
-
 return [
     /*
      *  Automatic registration of routes will only happen if this setting is `true`
@@ -16,7 +15,9 @@ return [
         app_path('Http/Controllers') => [
             'middleware' => ['web']
         ],
-    
+        base_path('modules/*/Controllers') => [
+            'middleware' => ['web']
+        ],        
         /*
         app_path('Http/Controllers/Api') => [
            'prefix' => 'api',
