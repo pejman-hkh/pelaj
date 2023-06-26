@@ -15,6 +15,9 @@ return [
     'directories' => [
         app_path('Http/Controllers') => [
             'middleware' => ['web']
+        ],
+        base_path('modules/*/Controllers') => [
+            'middleware' => ['web']
         ],        
         /*
         app_path('Http/Controllers/Api') => [
