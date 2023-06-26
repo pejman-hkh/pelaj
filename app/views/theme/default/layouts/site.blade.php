@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $configs->mainTitle }}</title>
+    <title>{{ @$configs->mainTitle }}</title>
     <!-- Fonts -->
 
     <meta name="description" content="{{ @$configs->description }}">
@@ -63,7 +63,7 @@
     <header class="w-full container mx-auto">
         <div class="flex flex-col items-center py-12">
             <a class="font-bold text-gray-800 uppercase hover:text-gray-700 text-5xl" href="#">
-                {{ $configs->mainTitle }}
+                {{ @$configs->mainTitle }}
             </a>
             <p class="text-lg text-gray-600">
                 {{ $title }}
@@ -107,8 +107,8 @@
 
             <div class="w-full bg-white shadow sm:rounded-lg flex flex-col my-4 p-6">
                 <p class="text-xl font-semibold pb-5">{{ __('About Us') }}</p>
-                <p class="pb-2">{{ $configs->about }}</p>
-                <a href="{{ $configs->aboutUrl }}" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
+                <p class="pb-2">{{ @$configs->about }}</p>
+                <a href="{{ @$configs->aboutUrl }}" class="w-full bg-blue-800 text-white font-bold text-sm uppercase rounded hover:bg-blue-700 flex items-center justify-center px-2 py-3 mt-4">
                     {{ __('Get to know us') }}
                 </a>
             </div>
@@ -143,7 +143,7 @@
                 @endforeach
      
             </div>
-            <div class="uppercase pb-6">&copy; {{ $configs->siteUrl }}</div>
+            <div class="uppercase pb-6">&copy; {{ @$configs->siteUrl }}</div>
         </div>
     </footer>
 </body>

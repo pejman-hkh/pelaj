@@ -14,13 +14,16 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
 
-        $this->call(\Database\Seeders\UserSeeder::class);
-        $this->call(\Database\Seeders\ConfigSeeder::class);
-        $this->call(\Database\Seeders\MenuSeeder::class);
-        $this->call(\Database\Seeders\PostSeeder::class);
-        $this->call(\Database\Seeders\CommentSeeder::class);
-        $this->call(\Database\Seeders\CatSeeder::class);
- 
+        $files_arr = scandir( dirname(__FILE__) ); //store filenames into $files_array
+        foreach ($files_arr as $key => $file){
+            if ($file !== 'DatabaseSeeder.php' && $file[0] !== "." ){
+   
+                $seeder = '\Database\Seeders\\'.explode('.', $file)[0];
+          
+                $this->call( $seeder );
+            }
+        }
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
