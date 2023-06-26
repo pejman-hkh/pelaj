@@ -14,6 +14,17 @@ class Lang extends Model
         $this->generate('fa');
     }    
     
+    function getListTasksAttribute() {
+        return [
+            [ __('Generate lang file'), 'taskGenerateLangFiles' ]
+        ];
+    }
+
+    public static function taskGenerateLangFiles() {
+        $l = new Lang;
+        $l->generateJsonFile();
+    }
+
     function generate( $lang = 'en' ) {
         $langs = Lang::all();
         $file = base_path('lang').'/'.$lang.'.json';

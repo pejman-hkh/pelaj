@@ -93,5 +93,20 @@
     "Get to know us": "ما را بشناسید",
     "Continue Reading": "ادامه",
     "By": "توسط",
-    "Published on": "تاریخ انتشار"
+    "Published on": "تاریخ انتشار",
+    "Priority": "ترتیب",
+    "Media": "مدیا",
+    "File": "فایل",
+    "Remember me": "مرا به خاطر بسپار",
+    "Forgot your password?": "فراموش کردن رمز عبور",
+    "Register": "ثبت نام",
+    "Log in": "ورود",
+    "Saved.": "دخیره شده.",
+    "Login": "ورود",
+    "Already registered?": "ثبت نام کرده اید ؟",
+    "Not Found": "پیدا نشد",
+    "Send your comment": "ارسال نظر",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "در صورت فراموش کردن رمز عبور ایمیل خود را وارد کنید تا رمز برای شما ارسال شود.",
+    "Email Password Reset Link": "ایمیل تغییر رمز عبور",
+    "Generate lang file": "ایجاد فایل زبان"
 }

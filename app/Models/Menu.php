@@ -43,7 +43,7 @@ class Menu extends Model
     }   
 
     function getPositionTitleAttribute() {
-        return $this->positions[ $this->position ];
+        return @$this->positions[ $this->position ];
     }
     
     function getPositionArrayAttribute() {

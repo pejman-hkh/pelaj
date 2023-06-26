@@ -21,6 +21,11 @@
 
     <x-card>
             <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> {{ __('New :model', ['model' => __( $modelName ) ]) }} </a></x-primary-button>
+
+            @foreach( $listTasks as $task )
+                <x-primary-button class="my-4"><a href="{{ url('/').'/manager/index/'.($modelName).'?task='.$task[1] }}"> {{ $task[0] }} </a></x-primary-button>
+            @endforeach
+
             <x-table>
                 <x-thead>
                     @foreach( $columns as $column )

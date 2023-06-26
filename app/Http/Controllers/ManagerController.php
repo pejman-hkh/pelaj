@@ -24,10 +24,18 @@ class ManagerController extends Controller
 
  
     #[Get('/manager/index/{model?}')]
-    public function index( String $model, Request $request ): View
+    public function index( String $model, Request $request )
     {
         if( in_array( $model, Manager::getModelNames() ) ) {
             $modelClass = '\App\Models\\'.$model;
+            if( $task = $request->get('task') ) {
+
+                if( method_exists( $modelClass, $task ) )
+                    $modelClass::$task();
+
+                return Redirect::to( url('/').'/manager/index/'.$model )->with('status', $model.'-task-'.$task );  
+            }
+
             $nmodel = new $modelClass;
 
             $columns = Manager::getColumns( $model );
@@ -55,7 +63,7 @@ class ManagerController extends Controller
 
             $lists = $query->paginate(5);
 
-            return view('manager.index', [ 'editorColumns' => [], 'modelName' => $model, 'model' => $nmodel, 'columns' => $columns, 'lists' => $lists ] );
+            return view('manager.index', [ 'listTasks' => $nmodel->listTasks?:[], 'editorColumns' => [], 'modelName' => $model, 'model' => $nmodel, 'columns' => $columns, 'lists' => $lists ] );
         } else {
             abort( 404 );
         }
