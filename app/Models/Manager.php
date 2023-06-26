@@ -18,11 +18,22 @@ class Manager extends Model
         $dbName = env('DB_DATABASE', 'forge');
   
         //in laravel there is not method for get columns with ORDINAL_POSITION priority so i use this that should change for work with another databases ....
-        $columns = \DB::select("SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = ? and table_schema = ? order by ORDINAL_POSITION asc", [$tableName, $dbName ]);
+        if( env('DB_CONNECTION') == 'sqlite' ) {
+            $columns = \DB::select("PRAGMA table_info($tableName)" );
+            $ret = [];
+            foreach( $columns as $column ) {
+                $ret[] = [ $column->name, Schema::getColumnType($tableName, $column->name ), $column->type ];
+            }
 
-        $ret = [];
-        foreach( $columns as $column ) {
-            $ret[] = [ $column->COLUMN_NAME, Schema::getColumnType($tableName, $column->COLUMN_NAME ), $column->DATA_TYPE ];
+            return $ret;
+        } else {
+
+            $columns = \DB::select("SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = ? and table_schema = ? order by ORDINAL_POSITION asc", [$tableName, $dbName ]);
+
+            $ret = [];
+            foreach( $columns as $column ) {
+                $ret[] = [ $column->COLUMN_NAME, Schema::getColumnType($tableName, $column->COLUMN_NAME ), $column->DATA_TYPE ];
+            }
         }
         return $ret;
     }
