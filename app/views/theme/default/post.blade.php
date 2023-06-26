@@ -1,4 +1,4 @@
-<x-site-layout title="{{ $post->title }}">
+<x-Site::wide title="{{ $post->title }}">
 
     <article class="flex flex-col shadow my-4 sm:rounded-lg">
         <!-- Article Image -->
@@ -62,4 +62,4 @@
         </form>
     </div>
     @endif
-</x-site-layout>
+</x-Site::wide>
