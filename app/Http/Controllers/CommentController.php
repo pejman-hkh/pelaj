@@ -20,6 +20,8 @@ class CommentController extends Controller
         $comment->name = $request->name;
         $comment->email = $request->email;
         $comment->note = $request->note;
+        $comment->status = 0;
+        $comment->answer = '';
         $comment->user_id = (int)$request->user()->id;
         $comment->save();
 
