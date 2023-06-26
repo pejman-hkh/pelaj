@@ -34,12 +34,14 @@
 
                 <aside class="w-full md:w-1/6 items-center px-3">
                    <x-card>
+                    @if( auth()->user()->isadmin )
                     <ul>
                         @foreach ($models as $model)
                         <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$model }}">{{ __($model) }}</a></li>
                         @endforeach
-          
                     </ul>
+                    @endif
+
                    </x-card>             
                 </aside>
             </div>

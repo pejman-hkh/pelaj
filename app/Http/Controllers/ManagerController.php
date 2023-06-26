@@ -15,14 +15,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-#[Middleware("auth")]
+#[Middleware(["auth", \App\Http\Middleware\Manager::class] )]
 class ManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
 
- 
     #[Get('/manager/index/{model?}')]
     public function index( String $model, Request $request )
     {
