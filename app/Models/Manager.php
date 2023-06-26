@@ -33,6 +33,8 @@ class Manager extends Model
         $ret = collect(glob($path))->map(function ($file) { $model = basename($file, '.php'); if( $model !== 'Manager' ) return $model; })->toArray();
         $priority = ['Menu', 'Post', 'Cat', 'Comment', 'Contact' ];
 
-        return array_unique( array_merge(  $priority, $ret ) );
+        //$modulesModels = collect(glob( base_path('modules/*/Models/*.php') ))->map( fn( $file ) => basename( $file, '.php') )->toArray();
+ 
+        return array_unique( array_merge(  $priority, $ret/*, $modulesModels*/ ) );
     }
 }
