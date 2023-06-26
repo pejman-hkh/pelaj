@@ -14,4 +14,6 @@ use App\Http\Controllers\TestController;
 |
 */
 
+//Route::get('/test', [\Modules\Shop\Controllers\TestController::class, 'index'] );
+
 require __DIR__.'/auth.php';

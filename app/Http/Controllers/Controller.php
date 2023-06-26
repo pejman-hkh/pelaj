@@ -11,8 +11,9 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 
     function __construct() {
+
    /*     $lang = new \App\Models\Lang();
         $lang->generateJsonFile();*/
-        
+
     }
 }
