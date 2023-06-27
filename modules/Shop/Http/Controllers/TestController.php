@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Redirect;
 #[Middleware([ \App\Http\Middleware\ShareViewSite::class ])]
 class TestController extends \App\Http\Controllers\Controller
 {
-    #[Get('test', name : 'test')]
+    #[Get('shop', name : 'shop')]
     public function index( Request $request ): View
     {
         return view('Site::contact', [
