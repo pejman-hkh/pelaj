@@ -11,6 +11,11 @@ Need php8.1 or greater for install
 
 `make`
 
+# Login
+username : admin@local.loc
+
+password : 123456789
+
 # Auto generate admin dashboard for models
 Now list and create and edit and delete of every model will generate automatically
 
