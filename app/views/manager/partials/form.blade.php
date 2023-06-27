@@ -1,5 +1,9 @@
             @foreach( $columns as $column )
     
+            @php
+            if( $column[0] == 'id') continue
+            @endphp
+            
             @if( $column[0] == 'file')
                 <div class="mb-4">
                     <x-input-label for="{{ $column[0] }}" :value="__( ucfirst($column[0]) )" />

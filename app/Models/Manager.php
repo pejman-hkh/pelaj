@@ -22,8 +22,8 @@ class Manager extends Model
             $columns = \DB::select("PRAGMA table_info($tableName)" );
             $ret = [];
             foreach( $columns as $column ) {
-                if( $column->name == 'id' )
-                    continue;
+               // if( $column->name == 'id' )
+                    //continue;
                 $ret[] = [ $column->name, Schema::getColumnType($tableName, $column->name ), $column->type ];
             }
 
