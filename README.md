@@ -2,6 +2,9 @@
 Pelaj Cms is a tiny cms for laravel with blade and breeze kit starter
 
 # Install
+
+Need php8.1 or greater for install
+
 `git clone https://github.com/pejman-hkh/pelaj`
 
 `cd pelaj`
