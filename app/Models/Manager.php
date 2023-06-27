@@ -24,7 +24,17 @@ class Manager extends Model
             foreach( $columns as $column ) {
                 if( $column->name == 'id' )
                     continue;
-                $ret[] = [ $column->name, Schema::getColumnType($tableName, $column->name ), $column->type ];
+ 
+                $type = $column->type;
+                if( $column->type == 'varchar' ) {
+                    $type = 'string';
+                } else if( $column->type == 'INTEGER' ) {
+                    $type = 'integer';
+                } else if( $column->type == 'TEXT' ) {
+                    $type = 'text';
+                }
+
+                $ret[] = [ $column->name, $type, $column->type ];
             }
 
             return $ret;
