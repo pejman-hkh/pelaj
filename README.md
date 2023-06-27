@@ -1,5 +1,5 @@
 # Pelaj
-Pelaj Cms is a tiny cms for laravel with blade and breeze kit starter
+Pelaj Cms is tiny laravel cms with blade and breeze kit starter
 
 # Install
 
