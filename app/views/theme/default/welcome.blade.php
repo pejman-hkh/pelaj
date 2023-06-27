@@ -1,4 +1,4 @@
-<x-site-layout title="{{ __('Home') }}">
+<x-Site::base title="{{ __('Home') }}">
     @foreach ( $posts as $post )
             <article class="flex flex-col shadow my-4 sm:rounded-lg">
                 <!-- Article Image -->
@@ -18,4 +18,4 @@
    
     @endforeach
 
-</x-site-layout>
+</x-Site::base>

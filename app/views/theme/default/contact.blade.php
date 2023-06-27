@@ -1,4 +1,4 @@
-<x-site-layout title="{{ __('Contact') }}">
+<x-Site::base title="{{ __('Contact') }}">
     <div class="w-full sm:max-w mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
     <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -34,4 +34,4 @@
         </form>
     </div>
 
-</x-site-layout>
+</x-Site::base>
