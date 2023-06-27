@@ -3,9 +3,17 @@ Pelaj Cms is a tiny cms for laravel with blade and breeze kit starter
 
 # Install
 `git clone https://github.com/pejman-hkh/pelaj`
+
+
 `composer install`
+
+
 `npm i`
+
+
 `npm run build`
+
+
 `php artisan key:generate`
 
 # Sample env file for sqlite
