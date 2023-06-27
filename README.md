@@ -28,6 +28,7 @@ DB_FOREIGN_KEYS=true
 
 # Set permission
 Set permission of laravel.sqlite to 777
+
 Set permission for storage
 
 # Auto generate admin dashboard for models
