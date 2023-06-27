@@ -1,10 +1,11 @@
 <?php
-$glob = glob( base_path('modules/*/Controllers') );
+$glob = glob( base_path('modules/*/Http/Controllers') );
 $dirs = [];
 foreach( $glob as $g ) {
     $e = explode('/', $g );
-    $dirs[ $g ] = ['namespace' => 'Modules\\'.$e[ count( $e ) - 2 ].'\Controllers\\', 'middleware' => 'web' ];
+    $dirs[ $g ] = ['namespace' => 'Modules\\'.$e[ count( $e ) - 3 ].'\Http\Controllers\\', 'middleware' => 'web' ];
 }
+
 return [
     /*
      *  Automatic registration of routes will only happen if this setting is `true`
