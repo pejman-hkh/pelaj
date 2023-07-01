@@ -33,11 +33,26 @@
                 </main>
 
                 <aside class="w-full md:w-1/6 items-center px-3">
+
+
                    <x-card>
+
                     @if( auth()->user()->isadmin )
                     <ul>
-                        @foreach ($models as $model)
+                        @foreach ($modelsMenu as $title => $model)
+                        @if( is_array( $model ) )
+                        <details class=" rounded-lg">
+                            <summary class="cursor-pointer"> {{$title}} </summary>
+                            <div class="py-2">
+                            @foreach( $model as $sub )
+                            <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$sub }}">{{ __($sub) }}</a></li>
+                            @endforeach
+                            </div>
+                        </details>
+                        @else
                         <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$model }}">{{ __($model) }}</a></li>
+                        @endif
+
                         @endforeach
                     </ul>
                     @endif
