@@ -17,7 +17,8 @@ class ContactController extends Controller
     public function index( Request $request ): View
     {
         return view('Site::contact', [
-            'user' => $request->user()
+            'user' => $request->user(),
+            'contact' => \App\Models\Post::where('url', 'contact')->first(),
         ]);
     }
     #[Post('contact')]

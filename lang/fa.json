@@ -109,5 +109,8 @@
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "در صورت فراموش کردن رمز عبور ایمیل خود را وارد کنید تا رمز برای شما ارسال شود.",
     "Email Password Reset Link": "ایمیل تغییر رمز عبور",
     "Generate lang file": "ایجاد فایل زبان",
-    "Isadmin": "مدیر"
+    "Isadmin": "مدیر",
+    "Shop_Product": "محصولات",
+    "Productcat_id": "بخش محصول",
+    "Summery": "خصلاصه"
 }

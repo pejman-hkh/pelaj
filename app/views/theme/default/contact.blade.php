@@ -1,5 +1,7 @@
 <x-Site::base title="{{ __('Contact') }}">
     <div class="w-full sm:max-w mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <p class="m-4">{!! @$contact->note !!}</p>
+
     <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
