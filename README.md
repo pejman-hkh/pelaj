@@ -16,9 +16,6 @@ username : admin@local.loc
 
 password : 123456789
 
-# Demo
-https://pelaj.peji.ir/
-
 
 # Auto generate admin dashboard for models
 All list, creation, edit and delete of every model will generate automatically
