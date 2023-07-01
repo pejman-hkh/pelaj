@@ -30,6 +30,7 @@ class ShowPostController extends Controller
         if( @$post->id ) {
             return view('Site::post', ['post' => $post ]);
         }
+
         abort(404);
     }
 

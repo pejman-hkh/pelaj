@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Shop\Http\Controllers;
+namespace Modules\Shop\App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreContactRequest;

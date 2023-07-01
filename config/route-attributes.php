@@ -1,9 +1,9 @@
 <?php
-$glob = glob( base_path('modules/*/Http/Controllers') );
+$glob = glob( base_path('modules/*/App/Http/Controllers') );
 $dirs = [];
 foreach( $glob as $g ) {
     $e = explode('/', $g );
-    $dirs[ $g ] = ['namespace' => 'Modules\\'.$e[ count( $e ) - 3 ].'\Http\Controllers\\', 'middleware' => 'web' ];
+    $dirs[ $g ] = ['namespace' => 'Modules\\'.$e[ count( $e ) - 4 ].'\App\Http\Controllers\\', 'middleware' => 'web' ];
 }
 
 return [
