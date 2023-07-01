@@ -11,9 +11,11 @@ use Spatie\RouteAttributes\Attributes\Put;
 use Spatie\RouteAttributes\Attributes\Post;
 use Illuminate\View\View;
 use Spatie\RouteAttributes\Attributes\Middleware;
+use Spatie\RouteAttributes\Attributes\Where;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+
 
 #[Middleware(["auth", \App\Http\Middleware\Manager::class] )]
 class ManagerController extends Controller
@@ -22,11 +24,24 @@ class ManagerController extends Controller
      * Display a listing of the resource.
      */
 
+    private function modelClass( $model ) {
+        if( strstr($model, '_') ) {
+            $e = explode('_', $model );
+
+            return '\Modules\\'.$e[0].'\App\Models\\'.$e[1];
+        }
+
+        return '\App\Models\\'.$model;
+    }
+
     #[Get('/manager/index/{model?}')]
     public function index( String $model, Request $request )
     {
+
         if( in_array( $model, Manager::getModelNames() ) ) {
-            $modelClass = '\App\Models\\'.$model;
+
+            $modelClass = $this->modelClass( $model );
+
             if( $task = $request->get('task') ) {
 
                 if( method_exists( $modelClass, $task ) )
@@ -37,7 +52,7 @@ class ManagerController extends Controller
 
             $nmodel = new $modelClass;
 
-            $columns = Manager::getColumns( $model );
+            $columns = Manager::getColumns( $modelClass );
 
             $query = $modelClass::select("*");
 
@@ -75,10 +90,10 @@ class ManagerController extends Controller
     public function create( String $model ): View
     {
         if( in_array( $model, Manager::getModelNames() ) ) {
-            $modelClass = '\App\Models\\'.$model;
+            $modelClass = $this->modelClass( $model );
             $nmodel = new $modelClass;
     
-            $columns = Manager::getColumns( $model );
+            $columns = Manager::getColumns( $modelClass );
 
             if( isset( $modelClass::$formExceptColumns ) ) foreach( $columns as $key => $column ) {
                 if( in_array( $column[0], @$modelClass::$formExceptColumns ) ) {
@@ -103,13 +118,13 @@ class ManagerController extends Controller
             return;
         }
 
-        $modelClass = '\App\Models\\'.$model;
+        $modelClass = $this->modelClass( $model );
         $nmodel = new $modelClass;
         if( method_exists( $nmodel, 'formStore') ) {
             $nmodel->formStore( $request );
             return Redirect::to( url('/').'/manager/index/'.$model )->with('status', $model.'-updated');    
         } else {        
-            $columns = Manager::getColumns( $model );
+            $columns = Manager::getColumns( $modelClass );
 
             $hasPriority = false;
             foreach( $columns as $column ) {
@@ -156,8 +171,8 @@ class ManagerController extends Controller
     public function edit(String $model, $id ): View
     {
         if( in_array( $model, Manager::getModelNames() ) ) {
-            $columns = Manager::getColumns( $model );
-            $modelClass = '\App\Models\\'.$model;
+            $modelClass = $this->modelClass( $model );
+            $columns = Manager::getColumns( $modelClass );
             if( isset( $modelClass::$formExceptColumns ) ) foreach( $columns as $key => $column ) {
                 if( in_array( $column[0], @$modelClass::$formExceptColumns ) ) {
                     unset( $columns[ $key ]);
@@ -184,9 +199,9 @@ class ManagerController extends Controller
             return;
         }
 
-        $modelClass = '\App\Models\\'.$model;
+        $modelClass = $this->modelClass( $model );
         $nmodel = $modelClass::findOrFail( $id );
-        $columns = Manager::getColumns( $model );
+        $columns = Manager::getColumns( $modelClass );
 
         foreach( $columns as $column ) {
             if( $column[0] == 'created_at' || $columns[0] == 'updated_at' ) continue;

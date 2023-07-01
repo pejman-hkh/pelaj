@@ -10,12 +10,12 @@ use Spatie\RouteAttributes\Attributes\Middleware;
 use Illuminate\Support\Facades\Redirect;
 
 #[Middleware([ \App\Http\Middleware\ShareViewSite::class ])]
-class TestController extends \App\Http\Controllers\Controller
+class ShopController extends \App\Http\Controllers\Controller
 {
     #[Get('shop', name : 'shop')]
     public function index( Request $request ): View
     {
-        return view('Site::contact', [
+        return view('Site::shop', [
             'user' => $request->user()
         ]);
     }

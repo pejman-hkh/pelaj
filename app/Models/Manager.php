@@ -11,8 +11,8 @@ class Manager extends Model
     use HasFactory;
 
 
-    public static function getColumns( $model ) {
-        $modelClass = '\App\Models\\'.$model;
+    public static function getColumns( $modelClass ) {
+        //$modelClass = '\App\Models\\'.$model;
         $nmodel = new $modelClass;
         $tableName = $nmodel->getTable();
         $dbName = env('DB_DATABASE', 'forge');
@@ -53,11 +53,16 @@ class Manager extends Model
     public static function getModelNames(): array
     {
         $path = app_path('Models') . '/*.php';
-        $ret = collect(glob($path))->map(function ($file) { $model = basename($file, '.php'); if( $model !== 'Manager' ) return $model; })->toArray();
+        $ret = collect(glob($path))->map(function ($file) { 
+            $model = basename($file, '.php'); 
+            if( $model === 'Manager' ) return ''; 
+            return $model; 
+        })->toArray();
+
         $priority = ['Menu', 'Post', 'Cat', 'Comment', 'Contact' ];
 
-        //$modulesModels = collect(glob( base_path('modules/*/Models/*.php') ))->map( fn( $file ) => basename( $file, '.php') )->toArray();
+        $modulesModels = collect(glob( base_path('modules/*/App/Models/*.php') ))->map( function( $file ){ $e = explode( '/', $file ); $ret = $e[count($e)-4].'_'.basename( $file, '.php'); return $ret; })->toArray();
  
-        return array_unique( array_merge(  $priority, $ret/*, $modulesModels*/ ) );
+        return array_unique( array_merge(  $priority, $ret, $modulesModels ) );
     }
 }
