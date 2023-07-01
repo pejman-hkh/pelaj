@@ -17,12 +17,16 @@ class DatabaseSeeder extends Seeder
         $files_arr = scandir( dirname(__FILE__) ); //store filenames into $files_array
         foreach ($files_arr as $key => $file){
             if ($file !== 'DatabaseSeeder.php' && $file[0] !== "." ){
-   
                 $seeder = '\Database\Seeders\\'.explode('.', $file)[0];
-          
                 $this->call( $seeder );
             }
         }
+
+        $moduleSeeders = glob(base_path().'/modules/*/Database/Seeders/*.php');
+        foreach( $moduleSeeders as $seeder ) {
+            $this->call( '\Modules\\'.substr( implode("\\", array_slice( explode( '/', $seeder ), -4, 4 ) ), 0, -4 ) );
+        }
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
