@@ -1,7 +1,6 @@
 cp .env.sqlite .env;
 pwd=$(pwd)
 sed -i 's#\$pwd#'$pwd'#' .env;
-chmod -R 0775 storage
 touch storage/app/laravel.sqlite
 chmod 0775 storage/app/laravel.sqlite
 composer install
