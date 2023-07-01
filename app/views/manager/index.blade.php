@@ -20,10 +20,10 @@
     </x-card>
 
     <x-card>
-            <x-primary-button class="my-4"><a href="{{ url('/').'/manager/create/'.($modelName) }}"> {{ __('New :model', ['model' => __( $modelName ) ]) }} </a></x-primary-button>
+           <a href="{{ url('/').'/manager/create/'.($modelName) }}">  <x-primary-button class="my-4">{{ __('New :model', ['model' => __( $modelName ) ]) }} </x-primary-button></a>
 
             @foreach( $listTasks as $task )
-                <x-primary-button class="my-4"><a href="{{ url('/').'/manager/index/'.($modelName).'?task='.$task[1] }}"> {{ $task[0] }} </a></x-primary-button>
+               <a href="{{ url('/').'/manager/index/'.($modelName).'?task='.$task[1] }}">  <x-primary-button class="my-4">{{ $task[0] }} </x-primary-button></a>
             @endforeach
 
             <x-table>
