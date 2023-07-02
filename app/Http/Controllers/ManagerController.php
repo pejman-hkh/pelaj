@@ -9,6 +9,7 @@ use App\Models\Manager;
 use Spatie\RouteAttributes\Attributes\Get;
 use Spatie\RouteAttributes\Attributes\Put;
 use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Delete;
 use Illuminate\View\View;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Where;
@@ -219,8 +220,19 @@ class ManagerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Manager $manager)
+
+    #[Delete('/manager/destroy/{model?}/{id?}')]
+    public function destroy(Request $manager, String $model, $id)
     {
-        //
+        if( ! in_array( $model, Manager::getModelNames() ) ) {
+            abort(404);
+            return;
+        }
+
+        $modelClass = $this->modelClass( $model );
+        $nmodel = $modelClass::findOrFail( $id );
+        $nmodel->delete();
+
+        return Redirect::to( url('/').'/manager/index/'.$model )->with('status', $model.'-deleted');      
     }
 }

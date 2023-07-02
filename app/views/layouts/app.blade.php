@@ -44,9 +44,11 @@
                         <details class=" rounded-lg">
                             <summary class="cursor-pointer"> {{$title}} </summary>
                             <div class="py-2">
-                            @foreach( $model as $sub )
-                            <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$sub }}">{{ __($sub) }}</a></li>
-                            @endforeach
+                                <ul class="ml-3 mt-2">        
+                                    @foreach( $model as $sub )
+                                    <li class="mb-4"><a href="{{ url('/').'/manager/index/'.$sub }}">{{ __($sub) }}</a></li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </details>
                         @else
@@ -62,5 +64,8 @@
             </div>
 
         </div>
+
+        <x-mmodal></x-mmodal>
+
     </body>
 </html>

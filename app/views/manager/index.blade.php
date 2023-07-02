@@ -67,7 +67,7 @@
                     @if( ! @$list->listDisableEdit )
                     <a href="{{ url('/').'/manager/edit/'.$modelName.'/'.$list->id }}"> {{ __('Edit') }}</a> / 
                     @endif
-                    <form method="POST" action="{{ url('/').'/manager/destroy/'.$modelName.'/'.$list->id }}">
+                    <form method="POST" class="delete" action="{{ url('/').'/manager/destroy/'.$modelName.'/'.$list->id }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit">{{ __('Delete') }}</button></form>

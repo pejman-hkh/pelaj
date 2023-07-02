@@ -39,7 +39,6 @@ NodeList.prototype.each = function( callback ) {
 
 });
 
-
 NodeList.prototype.prev = function() {
 	return _nodeList( [ this[0].previousElementSibling ] );
 }
@@ -61,8 +60,9 @@ NodeList.prototype.find = function( val ) {
 };
 
 NodeList.prototype.attr = function( key, value ){
-	if( typeof val === 'undefined' ) {
-		return this[0].getAttribute( key );
+	
+	if( typeof value === 'undefined' ) {
+		return this[0].getAttribute(key);
 	} else {
 		return this.each(function() {
 			this.setAttribute( key, value );

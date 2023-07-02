@@ -123,3 +123,20 @@ $(".choicesjs").ChoicesJs();
 $(".search h1").click(function() {
 	$(this).next().toggleClass('hidden');
 });
+
+let submitHandler;
+$(".delete").submit( submitHandler = function( e ) {
+	e.preventDefault();
+	$("#modal").removeClass('hidden');
+	$("#modal").data('elm', $(this) );
+});
+
+$("#modal #yes").click(function() {
+	let elm = $("#modal").data('elm');
+	elm[0].removeEventListener( "submit", submitHandler );
+	elm[0].submit();
+});
+
+$("#modal #no").click(function() {
+	$("#modal").addClass('hidden');
+});
