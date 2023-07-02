@@ -16,6 +16,7 @@ class Authenticate extends Middleware
     public function handle( $request, Closure $next, ...$guards)
     {
         $this->authenticate($request, $guards);
+        
         view()->share( 'models',  $models = Manager::getModelNames() );
 
         $menu = [];
