@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 use App\Models\Manager;
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class Authenticate extends Middleware
@@ -16,7 +17,8 @@ class Authenticate extends Middleware
     public function handle( $request, Closure $next, ...$guards)
     {
         $this->authenticate($request, $guards);
-        
+
+        view()->share( 'auth', [ 'user' => Auth::user() ] );
         view()->share( 'models',  $models = Manager::getModelNames() );
 
         $menu = [];

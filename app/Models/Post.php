@@ -12,6 +12,8 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
 
+    protected $appends = ['listTitle', 'statusArray', 'statusTitle', 'EnableCommentsTitle'];
+
     protected $fillable = [
         'title',
         'user_id',
@@ -37,11 +39,11 @@ class Post extends Model
     }
 
     function getEnableCommentsTitleAttribute() {
-        return $this->enableCommentsArray[ $this->enableComments ];
+        return @$this->enableCommentsArray[ $this->enableComments ];
     }
 
     function getStatusTitleAttribute() {
-        return $this->statusArray[ $this->status ];
+        return @$this->statusArray[ $this->status ];
     }
 
     function getEnableCommentsArrayAttribute() {

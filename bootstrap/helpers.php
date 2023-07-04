@@ -12,6 +12,7 @@ if( @$_GET['api'] ) {
 		}
 	}
 
+
 	function view( $pick = '', $data = [] ) {
 		if( $pick == '' ) {	
 			$view = ViewClass::instance();
