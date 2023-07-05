@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import Card from '../Components/Card';
 import Primarybutton from '../Components/Button';
+import Form from './Manager/Form';
 import { Table, Thead, Tbody, Tr, Th, Td } from '../Components/Table';
 //import { Head } from '@inertiajs/react';
 
@@ -25,7 +26,8 @@ function Columns( {mcolumn, list} ) {
 }
 
 export default function Manager({ data }) {
-
+    let columns = Object.values(data.columns);
+    let model = Object.values(data.model);
     return (
         <AuthenticatedLayout
             user={data.auth.user}
@@ -35,7 +37,7 @@ export default function Manager({ data }) {
   
             <Card title="Search" bodyclassName="'hidden'" className="search">
                 <form>
-                    <x-formManager />
+                    <Form { ...{ columns, model } } />
          
                     <div className="flex items-center justify-end mt-4">
                         <Primarybutton className="ml-3">
