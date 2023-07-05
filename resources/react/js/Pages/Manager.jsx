@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import Card from '../Components/Card';
-import Table from '../Components/Table';
+import Primarybutton from '../Components/Button';
+import { Table, Thead, Tbody, Tr, Th, Td } from '../Components/Table';
 //import { Head } from '@inertiajs/react';
 
 function Columns( {mcolumn, list} ) {
@@ -20,7 +21,7 @@ function Columns( {mcolumn, list} ) {
         ret = list[column]    
     }
 
-    return (<><td key={list.id+column[0]}>{ret}</td></>)
+    return (<><Td key={list.id+column[0]}>{ret}</Td></>)
 }
 
 export default function Manager({ data }) {
@@ -29,23 +30,17 @@ export default function Manager({ data }) {
         <AuthenticatedLayout
             user={data.auth.user}
             menu={data.modelsMenu}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{data.modelName} lists</h2>}
         >
-           
-            <x-slot name="header">
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    {data.modelName} lists
-                </h2>
-            </x-slot>
-
+  
             <Card title="Search" bodyclassName="'hidden'" className="search">
                 <form>
                     <x-formManager />
          
                     <div className="flex items-center justify-end mt-4">
-                        <x-primary-button className="ml-3">
+                        <Primarybutton className="ml-3">
                             Search
-                        </x-primary-button>
+                        </Primarybutton>
                     </div>            
 
                 </form>
@@ -53,33 +48,33 @@ export default function Manager({ data }) {
             </Card>
 
            <Card>
-                   <a href={'manager/create/'+data.modelName}>  <x-primary-button className="my-4">{ 'New '+data.modelName } </x-primary-button></a>
+                   <a href={'manager/create/'+data.modelName}>  <Primarybutton className="my-4">{ 'New '+data.modelName } </Primarybutton></a>
 
                     {data.listTasks.map( task => 
-                        <a href={ '/manager/index/'+data.modelName+'?task='+task[1] }>  <x-primary-button className="my-4">{task[0]} </x-primary-button></a>
+                        <a href={ '/manager/index/'+data.modelName+'?task='+task[1] }>  <Primarybutton className="my-4">{task[0]} </Primarybutton></a>
                     )}
                 
                     <Table>
-                        <thead>
-                            <tr>
+                        <Thead>
+                            <Tr>
                             {Object.values(data.columns).map( column  =>
-                            <th key={column[0]}>{ __( ucfirst(column[0]) ) }</th>
+                            <Th key={column[0]}>{ __( ucfirst(column[0]) ) }</Th>
                             )}
-                            <th>
+                            <Th>
                                 { __('Edit') }
-                            </th>
-                            </tr>
-                        </thead>
-                      <tbody>
+                            </Th>
+                            </Tr>
+                        </Thead>
+                      <Tbody>
                        {data.lists.data.map( list  =>
-                        <tr key={list.id}>
+                        <Tr key={list.id}>
                             {Object.values(data.columns).map( mcolumn  => 
                                 <Columns { ...{ mcolumn, list } } />
                             )}
-                            <td>Edit</td>                        
-                        </tr>
+                            <Td>Edit</Td>                        
+                        </Tr>
                         )}
-                        </tbody>
+                        </Tbody>
                     </Table>
 
            </Card>
