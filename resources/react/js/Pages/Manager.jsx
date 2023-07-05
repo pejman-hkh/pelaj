@@ -11,7 +11,7 @@ function Columns( {mcolumn, list} ) {
 
     let ret;
     if ( column.substr( -3 ) == '_id' ) {
-        ret = <a href={ list[cl]?.listLink?list[cl].listLink:('/manager/index/'+ucfirst(cl)+'?id='+list[cl]?.id) }>{ list[cl]?.listTitle?list[cl].listTitle:list[cl]?.title }</a>
+        ret = <a href={ list[cl]?.listLink?list[cl].listLink:(route('/')+'manager/index/'+ucfirst(cl)+'?id='+list[cl]?.id) }>{ list[cl]?.listTitle?list[cl].listTitle:list[cl]?.title }</a>
     } else if( list && list[ct] ) {
         if( Array.isArray( list[ct] ) )
             ret = list[ct].join('')
@@ -48,10 +48,10 @@ export default function Manager({ data }) {
             </Card>
 
            <Card>
-                   <a href={'manager/create/'+data.modelName}>  <Primarybutton className="my-4">{ 'New '+data.modelName } </Primarybutton></a>
+                   <a href={ route('/')+'manager/create/'+data.modelName}>  <Primarybutton className="my-4">{ 'New '+data.modelName } </Primarybutton></a>
 
                     {data.listTasks.map( task => 
-                        <a href={ '/manager/index/'+data.modelName+'?task='+task[1] }>  <Primarybutton className="my-4">{task[0]} </Primarybutton></a>
+                        <a href={ route('/')+'manager/index/'+data.modelName+'?task='+task[1] }>  <Primarybutton className="my-4">{task[0]} </Primarybutton></a>
                     )}
                 
                     <Table>

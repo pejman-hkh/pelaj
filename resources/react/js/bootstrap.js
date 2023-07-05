@@ -9,13 +9,17 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-window.route = function ( a ) {
+window.route = function ( a ) {{
     if( typeof a == 'undefined' ) {
         return { current : function() {} };
     }
 
+    if( a == '/' ) {
+        return '/laravel/blog/public/';
+    }
+    
     return a;
-}
+}}
 
 window.ucfirst = function ( a ) {
     return a;

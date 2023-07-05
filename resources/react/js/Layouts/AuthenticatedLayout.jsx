@@ -18,14 +18,14 @@ function Side({ menu }){
             <div className="py-2">
                 <ul className="ml-3 mt-2">
                 {model.map( sub => (
-                    <li className="mb-4"><a href={ '/manager/index/'+sub }>{ __(sub) }</a></li>
+                    <li className="mb-4"><a href={ route('/')+'manager/index/'+sub }>{ __(sub) }</a></li>
                 ))}     
                    
                 </ul>
             </div>
         </details>
     } else {
-        ret = <li className="mb-4"><a href={ '/manager/index/'+model}>{ __(model) }</a></li>
+        ret = <li className="mb-4"><a href={ route('/')+'manager/index/'+model}>{ __(model) }</a></li>
     }
     return ret;
     
