@@ -1,22 +1,22 @@
-export function Textarea({ className, disabled, value, ...props }) {
-	return <textarea {...props} disabled={ disabled ? 'disabled' : '' } className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+className}>{value}</textarea>
+export function Textarea({ ...props }) {
+	return <textarea {...props} className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+props.className}>{props.value}</textarea>
 }
 
-export function Select({ className, disabled, children, ...props }) {
-	return <select {...props} x-init="$el.value=$el.getAttribute('value')" disabled={ disabled ? 'disabled' : '' } className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+className}>
+export function Select({ children, ...props }) {
+	return <select {...props} x-init="$el.value=$el.getAttribute('value')" className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+props.className}>
 {children}
 </select>
 }
 
-export function Label({ className, children, ...props }) {
-	return <label {...props} className={'block font-medium text-sm text-gray-700 '+className }>
-	    {children}
+export function Label({ children, ...props }) {
+	return <label {...props} className={'block font-medium text-sm text-gray-700 '+props.className }>
+	    {children?children:props.value}
 	</label>
 }
 
-export function Error({ messages, className, ...props }) {
+export function Error({ messages, ...props }) {
 	if (messages) {
-	    return <ul className={'text-sm text-red-600 space-y-1' +className}>
+	    return <ul className={'text-sm text-red-600 space-y-1' +props.className}>
 	        {messages.map( ( message) => (
 	            <li>{ message }</li>
 	        ) )}
@@ -27,7 +27,7 @@ export function Error({ messages, className, ...props }) {
 	return '';
 }
 
-export function Input({ disabled, className, ...props }) {
-	return (<input {...props} disabled={ disabled ? 'disabled' : '' } className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+className } />);
+export function Input({ ...props }) {
+	return (<input {...props} className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+props.className } />);
 
 }
