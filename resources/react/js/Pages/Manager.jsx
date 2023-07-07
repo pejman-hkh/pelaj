@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '../Layouts/AuthenticatedLayout';
 import Card from '../Components/Card';
 import Primarybutton from '../Components/Button';
+import Pagination from '../Components/Pagination';
 import Form from './Manager/Form';
 import { Table, Thead, Tbody, Tr, Th, Td } from '../Components/Table';
 //import { Head } from '@inertiajs/react';
@@ -28,6 +29,7 @@ function Columns( {mcolumn, list} ) {
 export default function Manager({ data }) {
     let columns = Object.values(data.columns);
     let model = Object.values(data.model);
+    let i = 0;
     return (
         <AuthenticatedLayout
             user={data.auth.user}
@@ -70,8 +72,9 @@ export default function Manager({ data }) {
                       <Tbody>
                        {data.lists.data.map( list  =>
                         <Tr key={list.id}>
+                         
                             {Object.values(data.columns).map( mcolumn  => 
-                                <Columns { ...{ mcolumn, list } } />
+                                <Columns key={list.id+'_'+(i++)} { ...{ mcolumn, list } } />
                             )}
                             <Td>Edit</Td>                        
                         </Tr>
@@ -81,6 +84,7 @@ export default function Manager({ data }) {
 
            </Card>
            
+           <Pagination { ...{data} } />
 
         </AuthenticatedLayout>
     );

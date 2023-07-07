@@ -6,19 +6,20 @@ import ResponsiveNavLink from '../Components/ResponsiveNavLink';
 import { Link } from '../Components/Link';
 import Card  from '../Components/Card';
 
-function Side({ menu }){
+function List({ menu }){
  
     let title = menu[0];
     let model = menu[1];
 
     let ret;
+    let i = 0;
     if( Array.isArray( model ) ) {
         ret = <details className=" rounded-lg">
             <summary className="cursor-pointer"> {title} </summary>
             <div className="py-2">
                 <ul className="ml-3 mt-2">
                 {model.map( sub => (
-                    <li className="mb-4"><a href={ route('/')+'manager/index/'+sub }>{ __(sub) }</a></li>
+                    <li  key={i++} className="mb-4"><a href={ route('/')+'manager/index/'+sub }>{ __(sub) }</a></li>
                 ))}     
                    
                 </ul>
@@ -144,19 +145,19 @@ export default function Authenticated({ user, menu, header, children }) {
                 </header>
             )}
 
-            <div class="container mx-auto flex flex-wrap py-6">
+            <div className="container mx-auto flex flex-wrap py-6">
                 
-                <main class="w-full md:w-5/6 px-3">
+                <main className="w-full md:w-5/6 px-3">
                     {children}
                 </main>
 
-                <aside class="w-full md:w-1/6 items-center px-3">
+                <aside className="w-full md:w-1/6 items-center px-3">
 
 
                    <Card>
                    <ul>
                    { Object.entries(menu).map((menu ) => (
-                        <Side { ...{ menu} } />
+                        <List key={menu[0]} { ...{ menu} } />
                    ))}
                    </ul>
                    </Card>             

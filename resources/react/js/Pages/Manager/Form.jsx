@@ -1,6 +1,6 @@
-import { Label, Input, Error, Textarea, Select } from '../../Components/Form.jsx';
+import { Label, Input, Error, Textarea, Select, Upload } from '../../Components/Form.jsx';
 
-function Fields({ column, model, ...props }) {
+function Fields({ column, model, editorColumns, ...props }) {
 	if(  column[0] == 'id' )
 		return '';
 
@@ -24,7 +24,7 @@ function Fields({ column, model, ...props }) {
     } else if ( column[1] == 'text' ) {
         ret = (<div className="mb-4">
             <Label for={ column[0] } value={__( ucfirst(column[0]) )} />
-            <Textarea id={ column[0] } className={ ( editorColumns.includes( column[0] )?'quill':'')+' block mt-1 w-full' } name={ column[0] } />
+            <Textarea id={ column[0] } className={ ( editorColumns?.includes( column[0] )?'quill':'')+' block mt-1 w-full' } name={ column[0] } />
             <Error messages={errors.get( column[0] )} className="mt-2" />
         </div>)
     } else if ( column[1] == 'integer' || column[2] == 'tinyint' ) {
@@ -53,11 +53,11 @@ function Fields({ column, model, ...props }) {
 }
 
 export default function Form({columns, model}) {
-	console.log( columns );
 
+	let i = 0;
 	return (<div>
 	{columns.map(column => (
-		<Fields { ...{ column, model } } />
+		<Fields key={i++} { ...{ column, model } } />
 	))}
 	</div>);
 

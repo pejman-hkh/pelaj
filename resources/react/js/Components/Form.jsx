@@ -1,3 +1,8 @@
+
+export function Upload({ ...props }) {
+	return <input { ...props } type="file" class={"block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 "+props.className} />
+}
+
 export function Textarea({ ...props }) {
 	return <textarea {...props} className={'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm '+props.className}>{props.value}</textarea>
 }
@@ -19,8 +24,7 @@ export function Error({ messages, ...props }) {
 	    return <ul className={'text-sm text-red-600 space-y-1' +props.className}>
 	        {messages.map( ( message) => (
 	            <li>{ message }</li>
-	        ) )}
-	        
+	        ))} 
 	    </ul>
 	}
 
